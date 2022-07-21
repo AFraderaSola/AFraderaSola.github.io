@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Projects | Albert Fradera Sola</title>
-    <link>https://AFraderaSola.github.io/project/</link>
-      <atom:link href="https://AFraderaSola.github.io/project/index.xml" rel="self" type="application/rss+xml" />
-    <description>Projects</description>
+    <title>Proteomics | Albert Fradera Sola</title>
+    <link>https://AFraderaSola.github.io/tag/proteomics/</link>
+      <atom:link href="https://AFraderaSola.github.io/tag/proteomics/index.xml" rel="self" type="application/rss+xml" />
+    <description>Proteomics</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Thu, 21 Jul 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://AFraderaSola.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
-      <title>Projects</title>
-      <link>https://AFraderaSola.github.io/project/</link>
+      <title>Proteomics</title>
+      <link>https://AFraderaSola.github.io/tag/proteomics/</link>
     </image>
     
     <item>
