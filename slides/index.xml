@@ -15,7 +15,15 @@
 &lt;section data-noprocess data-shortcode-slide
   
       
-      data-background-image=&#34;./slides/RBPyeast/RBPyeast_1.jpeg&#34;
+      data-background-image=&#34;/slides/RBPyeast/RBPyeast_1.jpeg&#34;
+  &gt;
+
+&lt;hr&gt;
+
+&lt;section data-noprocess data-shortcode-slide
+  
+      
+      data-background-image=&#34;/slides/RBPyeast/RBPyeast_2.jpeg&#34;
   &gt;
 
 &lt;hr&gt;
