@@ -1,16 +1,25 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Publications | Albert Fradera Sola</title>
-    <link>https://AFraderaSola.github.io/publication/</link>
-      <atom:link href="https://AFraderaSola.github.io/publication/index.xml" rel="self" type="application/rss+xml" />
-    <description>Publications</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 30 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <title>Genomics | Albert Fradera Sola</title>
+    <link>https://AFraderaSola.github.io/tag/genomics/</link>
+      <atom:link href="https://AFraderaSola.github.io/tag/genomics/index.xml" rel="self" type="application/rss+xml" />
+    <description>Genomics</description>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 20 Jul 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://AFraderaSola.github.io/media/icon_hua2ec155b4296a9c9791d015323e16eb5_11927_512x512_fill_lanczos_center_3.png</url>
-      <title>Publications</title>
-      <link>https://AFraderaSola.github.io/publication/</link>
+      <title>Genomics</title>
+      <link>https://AFraderaSola.github.io/tag/genomics/</link>
     </image>
+    
+    <item>
+      <title>Scoring function development for RNA-Seq differential expression assessment</title>
+      <link>https://AFraderaSola.github.io/project/lolium/</link>
+      <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
+      <guid>https://AFraderaSola.github.io/project/lolium/</guid>
+      <description>&lt;p&gt;Under construction - Full details available soon&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Differential gene expression and gene ontologies associated with increasing water-stress in leaf and root transcriptomes of perennial ryegrass (Lolium perenne)</title>
