@@ -5,7 +5,7 @@
     <link>https://AFraderaSola.github.io/publication-type/2/</link>
       <atom:link href="https://AFraderaSola.github.io/publication-type/2/index.xml" rel="self" type="application/rss+xml" />
     <description>2</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Tue, 30 Jul 2019 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 08 Jun 2022 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://AFraderaSola.github.io/media/icon_hu3539e8969194f461a1ebebd6ea89a876_177173_512x512_fill_lanczos_center_3.png</url>
       <title>2</title>
@@ -13,10 +13,34 @@
     </image>
     
     <item>
+      <title>A novel SNF2 ATPase complex in Trypanosoma brucei with a role in H2A.Z-mediated chromatin remodeling</title>
+      <link>https://AFraderaSola.github.io/publication/2022_chiptryp/</link>
+      <pubDate>Wed, 08 Jun 2022 00:00:00 +0000</pubDate>
+      <guid>https://AFraderaSola.github.io/publication/2022_chiptryp/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>A novel SNF2 ATPase complex in Trypanosoma brucei with a role in H2A.Z-mediated chromatin remodelling</title>
+      <link>https://AFraderaSola.github.io/publication/2021_rnaseqcele/</link>
+      <pubDate>Tue, 11 May 2021 00:00:00 +0000</pubDate>
+      <guid>https://AFraderaSola.github.io/publication/2021_rnaseqcele/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>PAR-TERRA is the main contributor to telomeric repeat-containing RNA transcripts in normal and cancer mouse cells</title>
+      <link>https://AFraderaSola.github.io/publication/2020_terra/</link>
+      <pubDate>Fri, 30 Oct 2020 00:00:00 +0000</pubDate>
+      <guid>https://AFraderaSola.github.io/publication/2020_terra/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>Differential gene expression and gene ontologies associated with increasing water-stress in leaf and root transcriptomes of perennial ryegrass (Lolium perenne)</title>
-      <link>https://AFraderaSola.github.io/publication/lolium/</link>
+      <link>https://AFraderaSola.github.io/publication/2019_lolium/</link>
       <pubDate>Tue, 30 Jul 2019 00:00:00 +0000</pubDate>
-      <guid>https://AFraderaSola.github.io/publication/lolium/</guid>
+      <guid>https://AFraderaSola.github.io/publication/2019_lolium/</guid>
       <description></description>
     </item>
     
