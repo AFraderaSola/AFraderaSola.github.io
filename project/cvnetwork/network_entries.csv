@@ -1,0 +1,23 @@
+section,title,loc,institution,start,end,description_1,description_2,description_3,description_4,description_5,in_resume
+education,PhD Candidate in Quantitative Proteomics,JGU University,"Mainz, Germany",2018,,PhD thesis: Computational approaches to mass spectrometry based quantitative proteomics,,,,,TRUE
+education,M.Sc. in Omics Data Analysis,University of Vic,"Barcelona, Spain",2016,2017,Master thesis: Development of a scoring function for finding differential expression - application to Lolium Perenne,Erasmus + grant fellow,,,,TRUE
+education,Bachelor in Biochemistry,University of Barcelona,"Barcelona, Spain",2009,2016,Bachelor thesis: NMR studies on IDP proteins - application to alpha synuclein,Erasmus + grant fellow,,,,TRUE
+online_courses,Statistical Inference course,"Coursera, Johns Hopkins University",,2020,2020,Part 1 of the data science specialization,https://coursera.org/share/b7d93b26dd10fa7719ed0ca7c7d3f470,,,,TRUE
+online_courses,Regression Models course,"Coursera, Johns Hopkins University",,2020,2020,Part 2 of the data science specialization,https://coursera.org/share/df577759d0cb2659bc1a31f8669a0815,,,,TRUE
+online_courses,Practical Machine learning course,"Coursera, Johns Hopkins University",,2021,,Part 3 of the data science specialization,,,,,TRUE
+conferences,Statistical Data Analysis for Genome-Scale Biology,Bioconductor summer school,"Bressanone-Brixen, Italy",2022,2022,Conference attendance and flash talk,,,,,TRUE
+conferences,Network biology,CSH,"NYC, USA",2021,2021,Conference attendance and oral presentation,Characterization of the RBP interactome in yeast by quantitative proteomics,,,,TRUE
+conferences,Workshop on chromatin proteomics,FEBS advanced course,"Heraklion, Greece",2019,2019,Conference attendance and poster presentation,Mass spectrometry based quantitative proteomics to systematically characterize long non-coding RNAs ,,,,TRUE
+soft_skills_courses,Data visualization for scientists,,,,2022,,,,,,
+soft_skills_courses,Scientific writing,,,,2021,,,,,,
+soft_skills_courses,Convincing scientific presentations,,,,2020,,,,,,
+genomics_publications,Differential gene expression and gene ontologies associated with increasing water-stress in leaf and root transcriptomes of perennial ryegrass (Lolium perenne),PLOS one,,2019,2019, https://doi.org/10.1371/journal.pone.0220518,,,,,TRUE
+proteomics_publications,Characterization of the Novel Mitochondrial Genome Segregation Factor TAP110 in Trypanosoma brucei ,Journal of Cell Science,,2021,2021,https://doi.org/10.1242/jcs.254300,,,,,TRUE
+proteomics_publications,PAR-TERRA is the main contributor to telomeric repeat-containing RNA transcripts in normal and cancer mouse cells,RNA,,2020,2020,https://doi.org/10.1261/rna.076281.120,,,,,TRUE
+genomics_publications,A comparison of shared patterns of differential gene expression and gene ontologies in response to water-stress in roots and leaves of four diverse genotypes of Lolium and Festuca spp. temperate pasture grasses,PLOS one,,2021,2021,https://doi.org/10.1371/journal.pone.0249636,,,,,TRUE
+genomics_publications,A novel SNF2 ATPase complex in Trypanosoma brucei with a role in H2A.Z-mediated chromatin remodelling,PLOS pathogens,,2022,2022,https://doi.org/10.1101/2021.04.06.438560,,,,,TRUE
+genomics_publications,The double-stranded DNA-binding proteins TEBP-1 and TEBP-2 form a telomeric complex with POT-1,Nature Communications,,2021,2021,https://doi.org/10.1038/s41467-021-22861-2,,,,,TRUE
+research_positions,Research assistant,Butter laboratory - IMB (JGU university),"Mainz, Germany",2018,2018,Research assistant with Dr. Falk Butter (F.Butter@imb-mainz.de),"Genomics (RNAseq, ChIPseq)  data management, analysis and integration. ",,,,TRUE
+research_positions,Bachelor student,Konrat laboratory - MFPL (Universität Wien),"Vienna, Austria",2015,2016,BSc student with Dr. Robert Konrat (Robert.Konrat@univie.ac.at),Recording and Analysis of NMR Spectroscopic Data,,,,TRUE
+research_positions,PhD Student,Butter laboratory - IMB (JGU university),"Mainz, Germany",2018,,PhD student with Dr. Falk Butter (F.Butter@imb-mainz.de),"Genomics (RNAseq, ChIPseq)  and proteomics data management, analysis and integration. ",Project 1: Characterization of the RNA binding proteins interactome in yeast,Project 2: Developmental proteome quantificacion in Xenopus ,Publications: 5 co-author papers,TRUE
+research_positions,Master student,Narcis Fernandez-Fuentes - IBERS (Aberystwyth university),"Aberystwyth, UK",2017,2018,MSc student with Dr. Narcís Fernandez-Fuentes (naf4@aber.ac.uk),Development of a scoring function for assessing transcriptome differential expression on Lolium Perenne,"Publications: 1 first-authtor paper, 1 co-author paper",,,TRUE
