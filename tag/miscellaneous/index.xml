@@ -54,15 +54,15 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;end &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.numeric&lt;/span&gt;(my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;end)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;All non numeric entries (like empty values or years set to &amp;ldquo;current&amp;rdquo;) will be transformed into &lt;strong&gt;NA values&lt;/strong&gt;. I will use this in our favour to further filter the data.&lt;/p&gt;
 &lt;p&gt;First I want to kick out all the rows containing NA both in start and end, as those are &lt;strong&gt;time independent&lt;/strong&gt; entries (like skills) &lt;strong&gt;not relevant&lt;/strong&gt; to network-plot:&lt;/p&gt;
-&lt;pre tabindex=&#34;0&#34;&gt;&lt;code&gt;#Flag NA values with the logic statement TRUE and combine columns start and year:
-
-my_relevant_df$filter &amp;lt;- interaction(is.na(my_relevant_df$start),is.na(my_relevant_df$end))
-
-#Filter out all entries that are &amp;#34;TRUE.TRUE&amp;#34; (NA values in both columns) and remove the filter columns:
-
-my_relevant_df &amp;lt;- my_relevant_df[!my_relevant_df$filter == &amp;#34;TRUE.TRUE&amp;#34;,]
-my_relevant_df &amp;lt;- my_relevant_df %&amp;gt;% dplyr::select(title, start, end)
-&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Our last step on data cleaning is assign year values to the remaining NA:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Flag NA values with the logic statement TRUE and combine columns start and year:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;filter &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;interaction&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;is.na&lt;/span&gt;(my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;start),&lt;span style=&#34;color:#a6e22e&#34;&gt;is.na&lt;/span&gt;(my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;end))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Filter out all entries that are &amp;#34;TRUE.TRUE&amp;#34; (NA values in both columns) and remove the filter columns:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df[&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;filter &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TRUE.TRUE&amp;#34;&lt;/span&gt;,]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select&lt;/span&gt;(title, start, end)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Our last step on data cleaning is assign year values to the remaining NA:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;NA values at the &lt;strong&gt;start column&lt;/strong&gt; are assigned to be the same value that end year (i. e., a publication)&lt;/li&gt;
 &lt;li&gt;NA values at the &lt;strong&gt;end column&lt;/strong&gt; are assigned to current year (i. e., current job)&lt;/li&gt;

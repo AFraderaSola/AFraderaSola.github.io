@@ -813,15 +813,15 @@
 </span></span><span style="display:flex;"><span>my_relevant_df<span style="color:#f92672">$</span>end <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">as.numeric</span>(my_relevant_df<span style="color:#f92672">$</span>end)
 </span></span></code></pre></div><p>All non numeric entries (like empty values or years set to &ldquo;current&rdquo;) will be transformed into <strong>NA values</strong>. I will use this in our favour to further filter the data.</p>
 <p>First I want to kick out all the rows containing NA both in start and end, as those are <strong>time independent</strong> entries (like skills) <strong>not relevant</strong> to network-plot:</p>
-<pre tabindex="0"><code>#Flag NA values with the logic statement TRUE and combine columns start and year:
-
-my_relevant_df$filter &lt;- interaction(is.na(my_relevant_df$start),is.na(my_relevant_df$end))
-
-#Filter out all entries that are &#34;TRUE.TRUE&#34; (NA values in both columns) and remove the filter columns:
-
-my_relevant_df &lt;- my_relevant_df[!my_relevant_df$filter == &#34;TRUE.TRUE&#34;,]
-my_relevant_df &lt;- my_relevant_df %&gt;% dplyr::select(title, start, end)
-</code></pre><p>Our last step on data cleaning is assign year values to the remaining NA:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-r" data-lang="r"><span style="display:flex;"><span><span style="color:#75715e">#Flag NA values with the logic statement TRUE and combine columns start and year:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>my_relevant_df<span style="color:#f92672">$</span>filter <span style="color:#f92672">&lt;-</span> <span style="color:#a6e22e">interaction</span>(<span style="color:#a6e22e">is.na</span>(my_relevant_df<span style="color:#f92672">$</span>start),<span style="color:#a6e22e">is.na</span>(my_relevant_df<span style="color:#f92672">$</span>end))
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">#Filter out all entries that are &#34;TRUE.TRUE&#34; (NA values in both columns) and remove the filter columns:</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>my_relevant_df <span style="color:#f92672">&lt;-</span> my_relevant_df[<span style="color:#f92672">!</span>my_relevant_df<span style="color:#f92672">$</span>filter <span style="color:#f92672">==</span> <span style="color:#e6db74">&#34;TRUE.TRUE&#34;</span>,]
+</span></span><span style="display:flex;"><span>my_relevant_df <span style="color:#f92672">&lt;-</span> my_relevant_df <span style="color:#f92672">%&gt;%</span> dplyr<span style="color:#f92672">::</span><span style="color:#a6e22e">select</span>(title, start, end)
+</span></span></code></pre></div><p>Our last step on data cleaning is assign year values to the remaining NA:</p>
 <ul>
 <li>NA values at the <strong>start column</strong> are assigned to be the same value that end year (i. e., a publication)</li>
 <li>NA values at the <strong>end column</strong> are assigned to current year (i. e., current job)</li>
