@@ -5,12 +5,110 @@
     <link>https://AFraderaSola.github.io/project/</link>
       <atom:link href="https://AFraderaSola.github.io/project/index.xml" rel="self" type="application/rss+xml" />
     <description>Projects</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 23 Jul 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 31 Aug 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://AFraderaSola.github.io/media/icon_hu3539e8969194f461a1ebebd6ea89a876_177173_512x512_fill_lanczos_center_3.png</url>
+      <url>https://AFraderaSola.github.io/media/icon_hu29a244a309afb028e1f73901cf0bf49f_117863_512x512_fill_lanczos_center_3.png</url>
       <title>Projects</title>
       <link>https://AFraderaSola.github.io/project/</link>
     </image>
+    
+    <item>
+      <title>Network-based assignment of RNA-binding protein function</title>
+      <link>https://AFraderaSola.github.io/project/rbpyeast/</link>
+      <pubDate>Wed, 31 Aug 2022 00:00:00 +0000</pubDate>
+      <guid>https://AFraderaSola.github.io/project/rbpyeast/</guid>
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#tldr&#34;&gt;TL;DR&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;The Data&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#data-analysis&#34;&gt;Data analysis&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
+
+&lt;h3 id=&#34;tldr&#34;&gt;TL;DR&lt;/h3&gt;
+&lt;p&gt;This project’s goal is to identify RNA-binding proteins (RBPs) functionalities with &lt;strong&gt;proteomics data and network analysis&lt;/strong&gt;. I used &lt;strong&gt;mass spectrometry&lt;/strong&gt; data to collect interaction partners for 40 RBPs with known functionalities on the mRNA life cycle. Then I constructed a network to connect all the proteins and use a &lt;strong&gt;guilt-by-association principle&lt;/strong&gt; to assign novel functionalities. This resulted in the creation of a &lt;strong&gt;Shiny app&lt;/strong&gt; database &lt;a href=&#34;https://butterlab.imb-mainz.de/ScRBPinteractome/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://butterlab.imb-mainz.de/ScRBPinteractome/&lt;/a&gt; where data can be interactively explored. 
+If you find the app interesting and you want to learn more about the data analysis behind it, continue to read.&lt;/p&gt;
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;This project is the backbone of my &lt;strong&gt;PhD thesis&lt;/strong&gt; which revolves around mass spectrometry data, with a particular focus on RNA binding-proteins (RBPs) and their associated functionalities. In recent years, the number of detected proteins classified as RBPs has been &lt;strong&gt;skyrocketing&lt;/strong&gt;; in yeast, for instance, there are 1,273 proteins classified as RBPs. You can check this nice review from &lt;a href=&#34;[https://www.nature.com/articles/nrm.2017.130]&#34;&gt;Hentze &lt;em&gt;et al.&lt;/em&gt;&lt;/a&gt; if you are curious about this phenomenon.  Even so, and despite more and more proteins being classified as RBPs, their &lt;strong&gt;functional&lt;/strong&gt; roles remain largely unexplored. 
+The main reason behind the lack of functional details is that newly described RBPs mostly come from &lt;strong&gt;high-throughput&lt;/strong&gt; techniques such as  &lt;a href=&#34;[https://www.nature.com/articles/s41467-018-06557-8]&#34;&gt;RNA interactome capture (RIC)&lt;/a&gt;. These techniques usually generate big data sets and &lt;strong&gt;shine at identifying and classifying individuals&lt;/strong&gt;, but they do lack deep biological characterization. 
+The goal behind this project was to add a &lt;strong&gt;first layer&lt;/strong&gt; of functional characterization while keeping a &lt;strong&gt;high-throughput&lt;/strong&gt;. Thus, we selected &lt;strong&gt;40 well-characterised yeast RBPs&lt;/strong&gt; and identified its interaction partners with immunoprecipitation coupled to mass-spectrometry based quantitative proteomics. With this data we were able to build &lt;strong&gt;function-based&lt;/strong&gt; networks to gather hints on which individuals might be involved on particular &lt;strong&gt;RNA-related&lt;/strong&gt; pathways.&lt;/p&gt;
+&lt;h3 id=&#34;the-data&#34;&gt;The Data&lt;/h3&gt;
+&lt;h4 id=&#34;candidate-rbps&#34;&gt;Candidate RBPs&lt;/h4&gt;
+&lt;p&gt;I wanted to collect the interaction partners for 40 selected RBPs, which would constitute the building blocks of our function-based networks. Before focusing on the interactors data itself let’s first take a step back and look at the candidates data. Why these 40 RBPs in particular? How do they enable function-based networks? Hell, what do I even mean by “function-based networks&amp;rsquo;&#39;?&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-function-based-network-concept&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Function-based network concept&#34; srcset=&#34;
+               /project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_326c8d36c5321635493ee3a91e54a986.webp 400w,
+               /project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_061df1e835be3255c10cfcf63e65a6a4.webp 760w,
+               /project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_326c8d36c5321635493ee3a91e54a986.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;490&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Function-based network concept
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Let’s start by refreshing some basic network terminology. During this post, I am gonna describe the selected RBPs as network &lt;strong&gt;hubs&lt;/strong&gt;, their interaction partners as &lt;strong&gt;nodes&lt;/strong&gt;, and the connections between them as &lt;strong&gt;edges&lt;/strong&gt;.  This way, in Figure 1, each square (Target RBP) is a hub, each circle (IP interactor) is a node, and the lines (connections) are edges. These three elements are what I eventually used to create the &lt;strong&gt;RBP interactome network&lt;/strong&gt;. When we later take a subset of this larger network, filtering for a particular functionality, we get what we describe as &lt;strong&gt;function-based networks&lt;/strong&gt;. For instance, if we would keep only the blue hubs on Figure 1, we would obtain a blue function-based network. 
+Now that I have established the network &lt;em&gt;lingua franca&lt;/em&gt;, we can focus on our 40 RBP candidates. I selected them with the idea that, ultimately, they would become the hubs on the function-based networks. Thus it became paramount to select &lt;strong&gt;well-studied&lt;/strong&gt; candidates with &lt;strong&gt;central roles&lt;/strong&gt; on their pathways. I relied on the &lt;a href=&#34;https://www.kegg.jp/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;KEGG&lt;/a&gt; and &lt;a href=&#34;https://reactome.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Reactome&lt;/a&gt; databases to query RBPs involved in &lt;strong&gt;RNA biology pathways&lt;/strong&gt; such as degradation or splicing. Finally, our &lt;strong&gt;candidates&lt;/strong&gt; needed to be included on the TAP tagged comercial library so I could capture them with antibodies.&lt;/p&gt;
+&lt;h4 id=&#34;interactors-data&#34;&gt;Interactors data&lt;/h4&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-immunoprecipitation-experimental-design&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;Picture2.pdf&#34; alt=&#34;Immunoprecipitation experimental design&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Immunoprecipitation experimental design
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;I immunoprecipitated each selected RBP and pulled down all their interactor partners, in the &lt;strong&gt;presence&lt;/strong&gt; or &lt;strong&gt;absence&lt;/strong&gt; of RNA. This allowed to obtain two very distinctive groups of interactors:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Protein-Protein interactors (PPI)&lt;/strong&gt;: Due to the RNA digestion, by RNase A, all the nodes in this group interact with our hubs in an &lt;strong&gt;RNA independent&lt;/strong&gt; manner.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;RNA-dependent interactors (RDI)&lt;/strong&gt;: This group contains all the nodes that interact with our hubs in an &lt;strong&gt;RNA dependent&lt;/strong&gt; manner. 
+For both groups, the interactors were measured and quantified with a label-free quantification mass-spectrometry protocol. Together with the hub candidates, the PPI and RDI nodes are the building blocks which I used to construct the function-based networks.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;data-analysis&#34;&gt;Data analysis&lt;/h3&gt;
+&lt;p&gt;I have &lt;strong&gt;not included any code&lt;/strong&gt; on this post but, If you get curious and want to check it, you can find it available at the following github repository &lt;a href=&#34;https://github.com/AFraderaSola/Scerevisiae_RBPs_Interactome&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;github repository&lt;/a&gt;&lt;/p&gt;
+&lt;h4 id=&#34;rbp-interactors-quantification&#34;&gt;RBP interactors quantification&lt;/h4&gt;
+&lt;p&gt;During this section, I am gonna &lt;strong&gt;assume&lt;/strong&gt; you know some &lt;strong&gt;basic mass-spectrometry concepts&lt;/strong&gt;; otherwise you can check this nice review from &lt;a href=&#34;https://portlandpress.com/biochemist/article/42/5/64/226371/A-beginner-s-guide-to-mass-spectrometry-based&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sinha &lt;em&gt;et al.&lt;/em&gt;&lt;/a&gt; to freshen them up.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Interactive CV network</title>
@@ -23,7 +121,7 @@
   &lt;ul&gt;
     &lt;li&gt;
       &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&#34;#tldr&#34;&gt;&lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#tldr&#34;&gt;TL;DR&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;The data&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#the-plot&#34;&gt;The plot&lt;/a&gt;&lt;/li&gt;
@@ -33,7 +131,7 @@
 &lt;/nav&gt;
 &lt;/details&gt;
 
-&lt;h3 id=&#34;tldr&#34;&gt;&lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;tldr&#34;&gt;TL;DR&lt;/h3&gt;
 &lt;p&gt;The main idea behind this project is to make your &lt;strong&gt;CV shine&lt;/strong&gt;,  by visualizing its data and plotting it in an interactive fashion you. Thus what I want to do is to connect the usual entries on a CV (education, positions, publications&amp;hellip;) by year, so I can visualize, in an intuitive way, how a career path has developed.&lt;/p&gt;
 &lt;p&gt;Thus our goal is to create an &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot5.html&#34; target=&#34;_blank&#34;&gt;interactive network&lt;/a&gt; of the CV. If you would like to know how to generate something similar, continue to read.&lt;/p&gt;
 &lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
@@ -293,16 +391,6 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visOptions&lt;/span&gt;(highlightNearest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(hover &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; T))
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This gives our final interactive CV network which, again, can be explored &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot5.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;I hope you  liked this plot and tutorial!&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>RBP interactome characterization in yeast</title>
-      <link>https://AFraderaSola.github.io/project/rbpyeast/</link>
-      <pubDate>Thu, 21 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>https://AFraderaSola.github.io/project/rbpyeast/</guid>
-      <description>&lt;p&gt;Under construction - Full details available soon&lt;/p&gt;
-&lt;p&gt;Meanwhile, check the the following &lt;a href=&#34;https://github.com/AFraderaSola/Scerevisiae_RBPs_Interactome&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;github repository&lt;/a&gt;&lt;/p&gt;
 </description>
     </item>
     

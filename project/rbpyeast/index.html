@@ -318,8 +318,8 @@
     <link rel="manifest" href="/manifest.webmanifest" />
   
 
-  <link rel="icon" type="image/png" href="/media/icon_hu3539e8969194f461a1ebebd6ea89a876_177173_32x32_fill_lanczos_center_3.png" />
-  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu3539e8969194f461a1ebebd6ea89a876_177173_180x180_fill_lanczos_center_3.png" />
+  <link rel="icon" type="image/png" href="/media/icon_hu29a244a309afb028e1f73901cf0bf49f_117863_32x32_fill_lanczos_center_3.png" />
+  <link rel="apple-touch-icon" type="image/png" href="/media/icon_hu29a244a309afb028e1f73901cf0bf49f_117863_180x180_fill_lanczos_center_3.png" />
 
   <link rel="canonical" href="https://AFraderaSola.github.io/project/rbpyeast/" />
 
@@ -347,17 +347,17 @@
   
   <meta property="og:site_name" content="Albert Fradera Sola" />
   <meta property="og:url" content="https://AFraderaSola.github.io/project/rbpyeast/" />
-  <meta property="og:title" content="RBP interactome characterization in yeast | Albert Fradera Sola" />
+  <meta property="og:title" content="Network-based assignment of RNA-binding protein function | Albert Fradera Sola" />
   <meta property="og:description" content="Main PhD project - RNA binding proteins (RBPs) were selected according to their involvement in RNA pathways and immunoprecipitated. This allowed us to create a function-based network that enabled the assignment of new functionalities on novel and known RBPs. This work was recently presented at CSAMA 2022." /><meta property="og:image" content="https://AFraderaSola.github.io/project/rbpyeast/featured.jpg" />
     <meta property="twitter:image" content="https://AFraderaSola.github.io/project/rbpyeast/featured.jpg" /><meta property="og:locale" content="en-us" />
   
     
       <meta
         property="article:published_time"
-        content="2022-07-21T00:00:00&#43;00:00"
+        content="2022-08-31T00:00:00&#43;00:00"
       />
     
-    <meta property="article:modified_time" content="2022-07-21T00:00:00&#43;00:00">
+    <meta property="article:modified_time" content="2022-08-31T00:00:00&#43;00:00">
   
 
   
@@ -381,14 +381,14 @@
     "@type": "WebPage",
     "@id": "https://AFraderaSola.github.io/project/rbpyeast/"
   },
-  "headline": "RBP interactome characterization in yeast",
+  "headline": "Network-based assignment of RNA-binding protein function",
   
   "image": [
     "https://AFraderaSola.github.io/project/rbpyeast/featured.jpg"
   ],
   
-  "datePublished": "2022-07-21T00:00:00Z",
-  "dateModified": "2022-07-21T00:00:00Z",
+  "datePublished": "2022-08-31T00:00:00Z",
+  "dateModified": "2022-08-31T00:00:00Z",
   
   "author": {
     "@type": "Person",
@@ -400,7 +400,7 @@
     "name": "Albert Fradera Sola",
     "logo": {
       "@type": "ImageObject",
-      "url": "https://AFraderaSola.github.io/media/icon_hu3539e8969194f461a1ebebd6ea89a876_177173_192x192_fill_lanczos_center_3.png"
+      "url": "https://AFraderaSola.github.io/media/icon_hu29a244a309afb028e1f73901cf0bf49f_117863_192x192_fill_lanczos_center_3.png"
     }
   },
   "description": "Main PhD project - RNA binding proteins (RBPs) were selected according to their involvement in RNA pathways and immunoprecipitated. This allowed us to create a function-based network that enabled the assignment of new functionalities on novel and known RBPs. This work was recently presented at CSAMA 2022."
@@ -419,7 +419,7 @@
 
 
 
-  <title>RBP interactome characterization in yeast | Albert Fradera Sola</title>
+  <title>Network-based assignment of RNA-binding protein function | Albert Fradera Sola</title>
 </head>
 
 
@@ -758,7 +758,7 @@
 
 
 <div class="article-container pt-3">
-  <h1>RBP interactome characterization in yeast</h1>
+  <h1>Network-based assignment of RNA-binding protein function</h1>
 
   
 
@@ -776,7 +776,7 @@
     
       
     
-    Jul 21, 2022
+    Aug 31, 2022
   </span>
   
 
@@ -852,8 +852,96 @@
   <div class="article-container">
 
     <div class="article-style">
-      <p>Under construction - Full details available soon</p>
-<p>Meanwhile, check the the following <a href="https://github.com/AFraderaSola/Scerevisiae_RBPs_Interactome" target="_blank" rel="noopener">github repository</a></p>
+      <details class="toc-inpage d-print-none  " open>
+  <summary class="font-weight-bold">Table of Contents</summary>
+  <nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#tldr">TL;DR</a></li>
+        <li><a href="#introduction">Introduction</a></li>
+        <li><a href="#the-data">The Data</a></li>
+        <li><a href="#data-analysis">Data analysis</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+</details>
+
+<h3 id="tldr">TL;DR</h3>
+<p>This project’s goal is to identify RNA-binding proteins (RBPs) functionalities with <strong>proteomics data and network analysis</strong>. I used <strong>mass spectrometry</strong> data to collect interaction partners for 40 RBPs with known functionalities on the mRNA life cycle. Then I constructed a network to connect all the proteins and use a <strong>guilt-by-association principle</strong> to assign novel functionalities. This resulted in the creation of a <strong>Shiny app</strong> database <a href="https://butterlab.imb-mainz.de/ScRBPinteractome/" target="_blank" rel="noopener">https://butterlab.imb-mainz.de/ScRBPinteractome/</a> where data can be interactively explored. 
+If you find the app interesting and you want to learn more about the data analysis behind it, continue to read.</p>
+<h3 id="introduction">Introduction</h3>
+<p>This project is the backbone of my <strong>PhD thesis</strong> which revolves around mass spectrometry data, with a particular focus on RNA binding-proteins (RBPs) and their associated functionalities. In recent years, the number of detected proteins classified as RBPs has been <strong>skyrocketing</strong>; in yeast, for instance, there are 1,273 proteins classified as RBPs. You can check this nice review from <a href="[https://www.nature.com/articles/nrm.2017.130]">Hentze <em>et al.</em></a> if you are curious about this phenomenon.  Even so, and despite more and more proteins being classified as RBPs, their <strong>functional</strong> roles remain largely unexplored. 
+The main reason behind the lack of functional details is that newly described RBPs mostly come from <strong>high-throughput</strong> techniques such as  <a href="[https://www.nature.com/articles/s41467-018-06557-8]">RNA interactome capture (RIC)</a>. These techniques usually generate big data sets and <strong>shine at identifying and classifying individuals</strong>, but they do lack deep biological characterization. 
+The goal behind this project was to add a <strong>first layer</strong> of functional characterization while keeping a <strong>high-throughput</strong>. Thus, we selected <strong>40 well-characterised yeast RBPs</strong> and identified its interaction partners with immunoprecipitation coupled to mass-spectrometry based quantitative proteomics. With this data we were able to build <strong>function-based</strong> networks to gather hints on which individuals might be involved on particular <strong>RNA-related</strong> pathways.</p>
+<h3 id="the-data">The Data</h3>
+<h4 id="candidate-rbps">Candidate RBPs</h4>
+<p>I wanted to collect the interaction partners for 40 selected RBPs, which would constitute the building blocks of our function-based networks. Before focusing on the interactors data itself let’s first take a step back and look at the candidates data. Why these 40 RBPs in particular? How do they enable function-based networks? Hell, what do I even mean by “function-based networks&rsquo;'?</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-function-based-network-concept">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Function-based network concept" srcset="
+               /project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_326c8d36c5321635493ee3a91e54a986.webp 400w,
+               /project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_061df1e835be3255c10cfcf63e65a6a4.webp 760w,
+               /project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_326c8d36c5321635493ee3a91e54a986.webp"
+               width="760"
+               height="490"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Function-based network concept
+    </figcaption></figure>
+<p>Let’s start by refreshing some basic network terminology. During this post, I am gonna describe the selected RBPs as network <strong>hubs</strong>, their interaction partners as <strong>nodes</strong>, and the connections between them as <strong>edges</strong>.  This way, in Figure 1, each square (Target RBP) is a hub, each circle (IP interactor) is a node, and the lines (connections) are edges. These three elements are what I eventually used to create the <strong>RBP interactome network</strong>. When we later take a subset of this larger network, filtering for a particular functionality, we get what we describe as <strong>function-based networks</strong>. For instance, if we would keep only the blue hubs on Figure 1, we would obtain a blue function-based network. 
+Now that I have established the network <em>lingua franca</em>, we can focus on our 40 RBP candidates. I selected them with the idea that, ultimately, they would become the hubs on the function-based networks. Thus it became paramount to select <strong>well-studied</strong> candidates with <strong>central roles</strong> on their pathways. I relied on the <a href="https://www.kegg.jp/" target="_blank" rel="noopener">KEGG</a> and <a href="https://reactome.org/" target="_blank" rel="noopener">Reactome</a> databases to query RBPs involved in <strong>RNA biology pathways</strong> such as degradation or splicing. Finally, our <strong>candidates</strong> needed to be included on the TAP tagged comercial library so I could capture them with antibodies.</p>
+<h4 id="interactors-data">Interactors data</h4>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-immunoprecipitation-experimental-design">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img src="Picture2.pdf" alt="Immunoprecipitation experimental design" loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Immunoprecipitation experimental design
+    </figcaption></figure>
+<p>I immunoprecipitated each selected RBP and pulled down all their interactor partners, in the <strong>presence</strong> or <strong>absence</strong> of RNA. This allowed to obtain two very distinctive groups of interactors:</p>
+<ul>
+<li><strong>Protein-Protein interactors (PPI)</strong>: Due to the RNA digestion, by RNase A, all the nodes in this group interact with our hubs in an <strong>RNA independent</strong> manner.</li>
+<li><strong>RNA-dependent interactors (RDI)</strong>: This group contains all the nodes that interact with our hubs in an <strong>RNA dependent</strong> manner. 
+For both groups, the interactors were measured and quantified with a label-free quantification mass-spectrometry protocol. Together with the hub candidates, the PPI and RDI nodes are the building blocks which I used to construct the function-based networks.</li>
+</ul>
+<h3 id="data-analysis">Data analysis</h3>
+<p>I have <strong>not included any code</strong> on this post but, If you get curious and want to check it, you can find it available at the following github repository <a href="https://github.com/AFraderaSola/Scerevisiae_RBPs_Interactome" target="_blank" rel="noopener">github repository</a></p>
+<h4 id="rbp-interactors-quantification">RBP interactors quantification</h4>
+<p>During this section, I am gonna <strong>assume</strong> you know some <strong>basic mass-spectrometry concepts</strong>; otherwise you can check this nice review from <a href="https://portlandpress.com/biochemist/article/42/5/64/226371/A-beginner-s-guide-to-mass-spectrometry-based" target="_blank" rel="noopener">Sinha <em>et al.</em></a> to freshen them up.</p>
 
     </div>
 
@@ -881,7 +969,7 @@
       
       
       <li>
-        <a href="https://twitter.com/intent/tweet?url=https://AFraderaSola.github.io/project/rbpyeast/&amp;text=RBP%20interactome%20characterization%20in%20yeast" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
+        <a href="https://twitter.com/intent/tweet?url=https://AFraderaSola.github.io/project/rbpyeast/&amp;text=Network-based%20assignment%20of%20RNA-binding%20protein%20function" target="_blank" rel="noopener" class="share-btn-twitter" aria-label="twitter">
           <i class="fab fa-twitter"></i>
         </a>
       </li>
@@ -894,7 +982,7 @@
       
       
       <li>
-        <a href="https://www.facebook.com/sharer.php?u=https://AFraderaSola.github.io/project/rbpyeast/&amp;t=RBP%20interactome%20characterization%20in%20yeast" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
+        <a href="https://www.facebook.com/sharer.php?u=https://AFraderaSola.github.io/project/rbpyeast/&amp;t=Network-based%20assignment%20of%20RNA-binding%20protein%20function" target="_blank" rel="noopener" class="share-btn-facebook" aria-label="facebook">
           <i class="fab fa-facebook"></i>
         </a>
       </li>
@@ -907,7 +995,7 @@
       
       
       <li>
-        <a href="mailto:?subject=RBP%20interactome%20characterization%20in%20yeast&amp;body=https://AFraderaSola.github.io/project/rbpyeast/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
+        <a href="mailto:?subject=Network-based%20assignment%20of%20RNA-binding%20protein%20function&amp;body=https://AFraderaSola.github.io/project/rbpyeast/" target="_blank" rel="noopener" class="share-btn-email" aria-label="envelope">
           <i class="fas fa-envelope"></i>
         </a>
       </li>
@@ -920,7 +1008,7 @@
       
       
       <li>
-        <a href="https://www.linkedin.com/shareArticle?url=https://AFraderaSola.github.io/project/rbpyeast/&amp;title=RBP%20interactome%20characterization%20in%20yeast" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
+        <a href="https://www.linkedin.com/shareArticle?url=https://AFraderaSola.github.io/project/rbpyeast/&amp;title=Network-based%20assignment%20of%20RNA-binding%20protein%20function" target="_blank" rel="noopener" class="share-btn-linkedin" aria-label="linkedin-in">
           <i class="fab fa-linkedin-in"></i>
         </a>
       </li>
@@ -933,7 +1021,7 @@
       
       
       <li>
-        <a href="whatsapp://send?text=RBP%20interactome%20characterization%20in%20yeast%20https://AFraderaSola.github.io/project/rbpyeast/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
+        <a href="whatsapp://send?text=Network-based%20assignment%20of%20RNA-binding%20protein%20function%20https://AFraderaSola.github.io/project/rbpyeast/" target="_blank" rel="noopener" class="share-btn-whatsapp" aria-label="whatsapp">
           <i class="fab fa-whatsapp"></i>
         </a>
       </li>
@@ -946,7 +1034,7 @@
       
       
       <li>
-        <a href="https://service.weibo.com/share/share.php?url=https://AFraderaSola.github.io/project/rbpyeast/&amp;title=RBP%20interactome%20characterization%20in%20yeast" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
+        <a href="https://service.weibo.com/share/share.php?url=https://AFraderaSola.github.io/project/rbpyeast/&amp;title=Network-based%20assignment%20of%20RNA-binding%20protein%20function" target="_blank" rel="noopener" class="share-btn-weibo" aria-label="weibo">
           <i class="fab fa-weibo"></i>
         </a>
       </li>

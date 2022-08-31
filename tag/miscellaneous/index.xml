@@ -7,7 +7,7 @@
     <description>Miscellaneous</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Sat, 23 Jul 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://AFraderaSola.github.io/media/icon_hu3539e8969194f461a1ebebd6ea89a876_177173_512x512_fill_lanczos_center_3.png</url>
+      <url>https://AFraderaSola.github.io/media/icon_hu29a244a309afb028e1f73901cf0bf49f_117863_512x512_fill_lanczos_center_3.png</url>
       <title>Miscellaneous</title>
       <link>https://AFraderaSola.github.io/tag/miscellaneous/</link>
     </image>
@@ -23,7 +23,7 @@
   &lt;ul&gt;
     &lt;li&gt;
       &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&#34;#tldr&#34;&gt;&lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#tldr&#34;&gt;TL;DR&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;The data&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#the-plot&#34;&gt;The plot&lt;/a&gt;&lt;/li&gt;
@@ -33,7 +33,7 @@
 &lt;/nav&gt;
 &lt;/details&gt;
 
-&lt;h3 id=&#34;tldr&#34;&gt;&lt;strong&gt;TL;DR&lt;/strong&gt;&lt;/h3&gt;
+&lt;h3 id=&#34;tldr&#34;&gt;TL;DR&lt;/h3&gt;
 &lt;p&gt;The main idea behind this project is to make your &lt;strong&gt;CV shine&lt;/strong&gt;,  by visualizing its data and plotting it in an interactive fashion you. Thus what I want to do is to connect the usual entries on a CV (education, positions, publications&amp;hellip;) by year, so I can visualize, in an intuitive way, how a career path has developed.&lt;/p&gt;
 &lt;p&gt;Thus our goal is to create an &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot5.html&#34; target=&#34;_blank&#34;&gt;interactive network&lt;/a&gt; of the CV. If you would like to know how to generate something similar, continue to read.&lt;/p&gt;
 &lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
