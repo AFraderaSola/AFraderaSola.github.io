@@ -7,7 +7,7 @@
     <description>Projects</description>
     <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 31 Aug 2022 00:00:00 +0000</lastBuildDate>
     <image>
-      <url>https://AFraderaSola.github.io/media/icon_hu29a244a309afb028e1f73901cf0bf49f_117863_512x512_fill_lanczos_center_3.png</url>
+      <url>https://AFraderaSola.github.io/media/icon_huf5ee247ce1e31b4a1480ddc7a50ce984_103999_512x512_fill_lanczos_center_3.png</url>
       <title>Projects</title>
       <link>https://AFraderaSola.github.io/project/</link>
     </image>
@@ -62,10 +62,10 @@ The goal behind this project was to add a &lt;strong&gt;first layer&lt;/strong&g
 &lt;figure  id=&#34;figure-function-based-network-concept&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Function-based network concept&#34; srcset=&#34;
-               /project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_326c8d36c5321635493ee3a91e54a986.webp 400w,
-               /project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_061df1e835be3255c10cfcf63e65a6a4.webp 760w,
+               /project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_0a753119a3e26e3c5c5508ea97850a92.webp 400w,
+               /project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_cd4ecb239fa87a8f83cc8220a0cb94ad.webp 760w,
                /project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_326c8d36c5321635493ee3a91e54a986.webp&#34;
+               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture1_hu8ee9ec9a5ef309c7308b75c89c87d1ac_68090_0a753119a3e26e3c5c5508ea97850a92.webp&#34;
                width=&#34;760&#34;
                height=&#34;490&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -93,7 +93,14 @@ Now that I have established the network &lt;em&gt;lingua franca&lt;/em&gt;, we c
 
 &lt;figure  id=&#34;figure-immunoprecipitation-experimental-design&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img src=&#34;Picture2.pdf&#34; alt=&#34;Immunoprecipitation experimental design&#34; loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Immunoprecipitation experimental design&#34; srcset=&#34;
+               /project/rbpyeast/Picture2_hu35c416225f13a2100881285b01a6a7bd_1282386_0e4241f7aa1253a53d5d72402750f05e.webp 400w,
+               /project/rbpyeast/Picture2_hu35c416225f13a2100881285b01a6a7bd_1282386_ec40b92233724084d9c1d0c570b00b65.webp 760w,
+               /project/rbpyeast/Picture2_hu35c416225f13a2100881285b01a6a7bd_1282386_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture2_hu35c416225f13a2100881285b01a6a7bd_1282386_0e4241f7aa1253a53d5d72402750f05e.webp&#34;
+               width=&#34;376&#34;
+               height=&#34;760&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;figcaption&gt;
       Immunoprecipitation experimental design
     &lt;/figcaption&gt;&lt;/figure&gt;
