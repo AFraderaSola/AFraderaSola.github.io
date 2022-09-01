@@ -114,7 +114,7 @@ For both groups, the interactors were measured and quantified with a label-free 
 &lt;h3 id=&#34;data-analysis&#34;&gt;Data analysis&lt;/h3&gt;
 &lt;p&gt;I have not included any code on this post but, If you get curious and want to check it, you can find it available at the following github repository &lt;a href=&#34;https://github.com/AFraderaSola/Scerevisiae_RBPs_Interactome&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;github repository&lt;/a&gt;. I will reference which subfolders belong to each analysis on their corresponding subsection.&lt;/p&gt;
 &lt;h4 id=&#34;rbp-interactors-quantification&#34;&gt;RBP interactors quantification&lt;/h4&gt;
-&lt;p&gt;The code for this analysis can be found in the following &lt;a href=&#34;https://github.com/AFraderaSola/Scerevisiae_RBPs_Interactome/tree/main/01_IPscreen/YAFXXX/LFQ/01_CoreAnalysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;github repository subfolder&lt;/a&gt;. During this section, I am gonna assume you know some basic MS concepts; otherwise you can check this nice review from Sinha et al. [https://portlandpress.com/biochemist/article/42/5/64/226371/A-beginner-s-guide-to-mass-spectrometry-based] to freshen them up.&lt;/p&gt;
+&lt;p&gt;The code for this analysis can be found in the following &lt;a href=&#34;https://github.com/AFraderaSola/Scerevisiae_RBPs_Interactome/tree/main/01_IPscreen/YAFXXX/LFQ/01_CoreAnalysis&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;github repository subfolder&lt;/a&gt;. During this section, I am gonna assume you know some basic MS concepts; otherwise you can check this nice review from &lt;a href=&#34;https://portlandpress.com/biochemist/article/42/5/64/226371/A-beginner-s-guide-to-mass-spectrometry-based&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Sinha &lt;em&gt;et al.&lt;/em&gt;&lt;/a&gt; to freshen them up.&lt;/p&gt;
 &lt;p&gt;After the immunoprecipitation experiments, I obtained, in quadruplicate, protein elution products for three conditions:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Wild type (WT)&lt;/strong&gt;&lt;/li&gt;
@@ -142,10 +142,10 @@ The first step in the quantification is to match the MS peptide spectra with pro
 &lt;figure  id=&#34;figure-protein-filtering-steps&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Protein filtering steps&#34; srcset=&#34;
-               /project/rbpyeast/Picture3_huc656d23deb9cb997dc9569e5e7f0f90e_126243_05ebdb0b2e79e702c84b1c2f0f35d0eb.webp 400w,
-               /project/rbpyeast/Picture3_huc656d23deb9cb997dc9569e5e7f0f90e_126243_f4b851d865acd9d438268c9915e00825.webp 760w,
+               /project/rbpyeast/Picture3_huc656d23deb9cb997dc9569e5e7f0f90e_126243_45dc9703139a4acdafd40426672968b0.webp 400w,
+               /project/rbpyeast/Picture3_huc656d23deb9cb997dc9569e5e7f0f90e_126243_b6d5a706435068ca0b5717b11ff500f4.webp 760w,
                /project/rbpyeast/Picture3_huc656d23deb9cb997dc9569e5e7f0f90e_126243_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture3_huc656d23deb9cb997dc9569e5e7f0f90e_126243_05ebdb0b2e79e702c84b1c2f0f35d0eb.webp&#34;
+               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture3_huc656d23deb9cb997dc9569e5e7f0f90e_126243_45dc9703139a4acdafd40426672968b0.webp&#34;
                width=&#34;760&#34;
                height=&#34;634&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -178,10 +178,10 @@ The first step in the quantification is to match the MS peptide spectra with pro
 &lt;figure  id=&#34;figure-lfq-intesities-distribution-original-vs-imputed-values&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;LFQ intesities distribution: original vs. imputed values&#34; srcset=&#34;
-               /project/rbpyeast/Picture4_hu7bc3ce988d6af66fb46b53d9dd37ab2f_361805_727a8585e5037165949528f03c358b28.webp 400w,
-               /project/rbpyeast/Picture4_hu7bc3ce988d6af66fb46b53d9dd37ab2f_361805_f9bddd871f7aea633ea4e1b0fece7b41.webp 760w,
+               /project/rbpyeast/Picture4_hu7bc3ce988d6af66fb46b53d9dd37ab2f_361805_6619785180c22aebccb609ef685349dd.webp 400w,
+               /project/rbpyeast/Picture4_hu7bc3ce988d6af66fb46b53d9dd37ab2f_361805_975cb2321a148900f1262d488c550f6c.webp 760w,
                /project/rbpyeast/Picture4_hu7bc3ce988d6af66fb46b53d9dd37ab2f_361805_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture4_hu7bc3ce988d6af66fb46b53d9dd37ab2f_361805_727a8585e5037165949528f03c358b28.webp&#34;
+               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture4_hu7bc3ce988d6af66fb46b53d9dd37ab2f_361805_6619785180c22aebccb609ef685349dd.webp&#34;
                width=&#34;538&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -209,10 +209,10 @@ With our NA values imputed, we are ready to proceed with a series of quality con
 &lt;figure  id=&#34;figure-volcano-plots-ppi-comparison-left-and-rdi-comparison-right&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Volcano plots: PPI comparison (left) and RDI comparison (right)&#34; srcset=&#34;
-               /project/rbpyeast/Picture5_huf8d1ec54b25971814006d6b6d672e619_191991_47963ec3c8871237f2aafaf6ae100ee2.webp 400w,
-               /project/rbpyeast/Picture5_huf8d1ec54b25971814006d6b6d672e619_191991_4c5bbb4ee52bdf2e416d3e3c9501c63b.webp 760w,
+               /project/rbpyeast/Picture5_huf8d1ec54b25971814006d6b6d672e619_191991_7272f843651625d72bedc5984d8df809.webp 400w,
+               /project/rbpyeast/Picture5_huf8d1ec54b25971814006d6b6d672e619_191991_45111dc1c6ec859c79292767510f3db9.webp 760w,
                /project/rbpyeast/Picture5_huf8d1ec54b25971814006d6b6d672e619_191991_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture5_huf8d1ec54b25971814006d6b6d672e619_191991_47963ec3c8871237f2aafaf6ae100ee2.webp&#34;
+               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture5_huf8d1ec54b25971814006d6b6d672e619_191991_7272f843651625d72bedc5984d8df809.webp&#34;
                width=&#34;760&#34;
                height=&#34;236&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -243,10 +243,10 @@ With our NA values imputed, we are ready to proceed with a series of quality con
 &lt;figure  id=&#34;figure-bar-plot-ppi-green-rdi-orange-and-ovelap-purple-groups&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Bar plot: PPI (green), RDI (orange) and ovelap (purple) groups&#34; srcset=&#34;
-               /project/rbpyeast/Picture6_hu66ab9d9071761b41732509a968470b32_88437_4f278e0db86a1e75f6f12ab627d66b42.webp 400w,
-               /project/rbpyeast/Picture6_hu66ab9d9071761b41732509a968470b32_88437_38f52b40cac49f1c6c9625a40e87ccfc.webp 760w,
+               /project/rbpyeast/Picture6_hu66ab9d9071761b41732509a968470b32_88437_8ee5a9fec67d54fd4fb49f902ffe86e4.webp 400w,
+               /project/rbpyeast/Picture6_hu66ab9d9071761b41732509a968470b32_88437_ebb547a0b488df0da5ed0ba66c72ae43.webp 760w,
                /project/rbpyeast/Picture6_hu66ab9d9071761b41732509a968470b32_88437_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture6_hu66ab9d9071761b41732509a968470b32_88437_4f278e0db86a1e75f6f12ab627d66b42.webp&#34;
+               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture6_hu66ab9d9071761b41732509a968470b32_88437_8ee5a9fec67d54fd4fb49f902ffe86e4.webp&#34;
                width=&#34;760&#34;
                height=&#34;242&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -275,10 +275,10 @@ With our NA values imputed, we are ready to proceed with a series of quality con
 &lt;figure  id=&#34;figure-functional-enrichment-heat-map&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Functional enrichment heat map&#34; srcset=&#34;
-               /project/rbpyeast/Picture7_hu3bd87f2f219f2af0a026a5f839249d06_924270_dd33122f2c1861fe157ecfbd895d93d7.webp 400w,
-               /project/rbpyeast/Picture7_hu3bd87f2f219f2af0a026a5f839249d06_924270_90649bf15eb47d424e0a47a316722aaf.webp 760w,
+               /project/rbpyeast/Picture7_hu3bd87f2f219f2af0a026a5f839249d06_924270_deeab307e6fd330f9b80633ed793512c.webp 400w,
+               /project/rbpyeast/Picture7_hu3bd87f2f219f2af0a026a5f839249d06_924270_dac0222aa778702d00c03cf4197727da.webp 760w,
                /project/rbpyeast/Picture7_hu3bd87f2f219f2af0a026a5f839249d06_924270_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture7_hu3bd87f2f219f2af0a026a5f839249d06_924270_dd33122f2c1861fe157ecfbd895d93d7.webp&#34;
+               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture7_hu3bd87f2f219f2af0a026a5f839249d06_924270_deeab307e6fd330f9b80633ed793512c.webp&#34;
                width=&#34;760&#34;
                height=&#34;386&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -310,10 +310,10 @@ With our NA values imputed, we are ready to proceed with a series of quality con
 &lt;figure  id=&#34;figure-global-network-ppi-left-and-rdi-right-groups-as-a-network&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Global network: PPI (left) and RDI (right) groups as a network&#34; srcset=&#34;
-               /project/rbpyeast/Picture8_huff5e56031cfadb1e54d6aa6589d7e937_17314743_11692a4051b4def11e0212f700621632.webp 400w,
-               /project/rbpyeast/Picture8_huff5e56031cfadb1e54d6aa6589d7e937_17314743_9383467334794244d1f0f7897e704093.webp 760w,
+               /project/rbpyeast/Picture8_huff5e56031cfadb1e54d6aa6589d7e937_17314743_33c0fb1f675b29c9c668b65a418ea9cb.webp 400w,
+               /project/rbpyeast/Picture8_huff5e56031cfadb1e54d6aa6589d7e937_17314743_22435ff4dbecfe76ddea97c9bad48a6d.webp 760w,
                /project/rbpyeast/Picture8_huff5e56031cfadb1e54d6aa6589d7e937_17314743_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture8_huff5e56031cfadb1e54d6aa6589d7e937_17314743_11692a4051b4def11e0212f700621632.webp&#34;
+               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture8_huff5e56031cfadb1e54d6aa6589d7e937_17314743_33c0fb1f675b29c9c668b65a418ea9cb.webp&#34;
                width=&#34;760&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -342,10 +342,10 @@ With our NA values imputed, we are ready to proceed with a series of quality con
 &lt;figure  id=&#34;figure-function-based--subnetwork-ppi-left-and-rdi-right-groups-as-a-network&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Function-based  subnetwork: PPI (left) and RDI (right) groups as a network&#34; srcset=&#34;
-               /project/rbpyeast/Picture9_hu9e0a498f5e9e1145609a8ce9ab0ad3f0_2484197_18a8faf1998baaa3ca210c2f238cda2f.webp 400w,
-               /project/rbpyeast/Picture9_hu9e0a498f5e9e1145609a8ce9ab0ad3f0_2484197_dc3e5d67c077d9fd94f67e79b935cc50.webp 760w,
+               /project/rbpyeast/Picture9_hu9e0a498f5e9e1145609a8ce9ab0ad3f0_2484197_e99ac544aef76d062a052844189adccd.webp 400w,
+               /project/rbpyeast/Picture9_hu9e0a498f5e9e1145609a8ce9ab0ad3f0_2484197_c2f76facfca31f2200f9e645bd5a45ab.webp 760w,
                /project/rbpyeast/Picture9_hu9e0a498f5e9e1145609a8ce9ab0ad3f0_2484197_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture9_hu9e0a498f5e9e1145609a8ce9ab0ad3f0_2484197_18a8faf1998baaa3ca210c2f238cda2f.webp&#34;
+               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture9_hu9e0a498f5e9e1145609a8ce9ab0ad3f0_2484197_e99ac544aef76d062a052844189adccd.webp&#34;
                width=&#34;760&#34;
                height=&#34;541&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -372,10 +372,10 @@ With our NA values imputed, we are ready to proceed with a series of quality con
 &lt;figure  id=&#34;figure-global-and-function-based-networks-ppi-and-rdi-groups-combined-as-a-network&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Global and Function-based networks: PPI and RDI groups combined as a network&#34; srcset=&#34;
-               /project/rbpyeast/Picture10_hu80227aec0603cc357c2b9080a880b415_20395151_f6c22bc77b8796f4aba812d69044cb64.webp 400w,
-               /project/rbpyeast/Picture10_hu80227aec0603cc357c2b9080a880b415_20395151_4b4161ccd4eb948ab77076b5b4e4966b.webp 760w,
+               /project/rbpyeast/Picture10_hu80227aec0603cc357c2b9080a880b415_20395151_6af69348b5d7f5afe4f926ebd981414a.webp 400w,
+               /project/rbpyeast/Picture10_hu80227aec0603cc357c2b9080a880b415_20395151_863a04e8a5a92710c20f013c742801c4.webp 760w,
                /project/rbpyeast/Picture10_hu80227aec0603cc357c2b9080a880b415_20395151_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture10_hu80227aec0603cc357c2b9080a880b415_20395151_f6c22bc77b8796f4aba812d69044cb64.webp&#34;
+               src=&#34;https://AFraderaSola.github.io/project/rbpyeast/Picture10_hu80227aec0603cc357c2b9080a880b415_20395151_6af69348b5d7f5afe4f926ebd981414a.webp&#34;
                width=&#34;633&#34;
                height=&#34;760&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
