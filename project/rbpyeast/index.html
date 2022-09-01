@@ -840,9 +840,9 @@
 </div>
 
 
-<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 720px; max-height: 360px;">
+<div class="article-header article-container featured-image-wrapper mt-4 mb-4" style="max-width: 476px; max-height: 538px;">
   <div style="position: relative">
-    <img src="/project/rbpyeast/featured_hu6f16a521196e84e37a64c27428c23b42_175204_720x2500_fit_q75_h2_lanczos.webp" width="720" height="360" alt="" class="featured-image">
+    <img src="/project/rbpyeast/featured_hu0ba4bf4fef4089fbc45422b5b5e7db63_64367_720x2500_fit_q75_h2_lanczos.webp" width="476" height="538" alt="" class="featured-image">
     <span class="article-header-caption">Function-based assignment of RBP functionalities.</span>
   </div>
 </div>
@@ -862,6 +862,7 @@
         <li><a href="#introduction">Introduction</a></li>
         <li><a href="#the-data">The Data</a></li>
         <li><a href="#data-analysis">Data analysis</a></li>
+        <li><a href="#conclusion">Conclusion</a></li>
       </ul>
     </li>
   </ul>
@@ -869,12 +870,12 @@
 </details>
 
 <h3 id="tldr">TL;DR</h3>
-<p>This project’s goal is to identify RNA-binding proteins (RBPs) functionalities with <strong>proteomics data and network analysis</strong>. I used <strong>mass spectrometry</strong> data to collect interaction partners for 40 RBPs with known functionalities on the mRNA life cycle. Then I constructed a network to connect all the proteins and use a <strong>guilt-by-association principle</strong> to assign novel functionalities. This resulted in the creation of a <strong>Shiny app</strong> database <a href="https://butterlab.imb-mainz.de/ScRBPinteractome/" target="_blank" rel="noopener">https://butterlab.imb-mainz.de/ScRBPinteractome/</a> where data can be interactively explored. 
+<p>This project’s goal is to identify RNA-binding proteins (RBPs) functionalities with <strong>proteomics data and network analysis</strong>. I used <strong>mass-spectrometry</strong> data to collect interaction partners for 40 RBPs with known functionalities on the mRNA life cycle. Then I constructed a network to connect all the proteins and use a <strong>guilt-by-association principle</strong> to assign novel functionalities. This resulted in the creation of a <strong>Shiny app</strong> database <a href="https://butterlab.imb-mainz.de/ScRBPinteractome/" target="_blank" rel="noopener">https://butterlab.imb-mainz.de/ScRBPinteractome/</a> where data can be interactively explored. 
 If you find the app interesting and you want to learn more about the data analysis behind it, continue to read.</p>
 <h3 id="introduction">Introduction</h3>
-<p>This project is the backbone of my <strong>PhD thesis</strong> which revolves around mass spectrometry data, with a particular focus on RNA binding-proteins (RBPs) and their associated functionalities. In recent years, the number of detected proteins classified as RBPs has been <strong>skyrocketing</strong>; in yeast, for instance, there are 1,273 proteins classified as RBPs. You can check this nice review from <a href="[https://www.nature.com/articles/nrm.2017.130]">Hentze <em>et al.</em></a> if you are curious about this phenomenon.  Even so, and despite more and more proteins being classified as RBPs, their <strong>functional</strong> roles remain largely unexplored. 
+<p>This project is the backbone of my <strong>PhD thesis</strong> which revolves around mass-spectrometry (MS) data, with a particular focus on RNA binding-proteins (RBPs) and their associated functionalities. In recent years, the number of detected proteins classified as RBPs has been <strong>skyrocketing</strong>; in yeast, for instance, there are 1,273 proteins classified as RBPs. You can check this nice review from <a href="[https://www.nature.com/articles/nrm.2017.130]">Hentze <em>et al.</em></a> if you are curious about this phenomenon.  Even so, and despite more and more proteins being classified as RBPs, their <strong>functional</strong> roles remain largely unexplored. 
 The main reason behind the lack of functional details is that newly described RBPs mostly come from <strong>high-throughput</strong> techniques such as  <a href="[https://www.nature.com/articles/s41467-018-06557-8]">RNA interactome capture (RIC)</a>. These techniques usually generate big data sets and <strong>shine at identifying and classifying individuals</strong>, but they do lack deep biological characterization. 
-The goal behind this project was to add a <strong>first layer</strong> of functional characterization while keeping a <strong>high-throughput</strong>. Thus, we selected <strong>40 well-characterised yeast RBPs</strong> and identified its interaction partners with immunoprecipitation coupled to mass-spectrometry based quantitative proteomics. With this data we were able to build <strong>function-based</strong> networks to gather hints on which individuals might be involved on particular <strong>RNA-related</strong> pathways.</p>
+The goal behind this project was to add a <strong>first layer</strong> of functional characterization while keeping a <strong>high-throughput</strong>. Thus, we selected <strong>40 well-characterised yeast RBPs</strong> and identified its interaction partners with immunoprecipitation coupled to MS-based quantitative proteomics. With this data we were able to build <strong>function-based</strong> networks to gather hints on which individuals might be involved on particular <strong>RNA-related</strong> pathways.</p>
 <h3 id="the-data">The Data</h3>
 <h4 id="candidate-rbps">Candidate RBPs</h4>
 <p>I wanted to collect the interaction partners for 40 selected RBPs, which would constitute the building blocks of our function-based networks. Before focusing on the interactors data itself let’s first take a step back and look at the candidates data. Why these 40 RBPs in particular? How do they enable function-based networks? Hell, what do I even mean by “function-based networks&rsquo;'?</p>
@@ -907,7 +908,7 @@ The goal behind this project was to add a <strong>first layer</strong> of functi
   </div><figcaption>
       Function-based network concept
     </figcaption></figure>
-<p>Let’s start by refreshing some basic network terminology. During this post, I am gonna describe the selected RBPs as network <strong>hubs</strong>, their interaction partners as <strong>nodes</strong>, and the connections between them as <strong>edges</strong>.  This way, in Figure 1, each square (Target RBP) is a hub, each circle (IP interactor) is a node, and the lines (connections) are edges. These three elements are what I eventually used to create the <strong>RBP interactome network</strong>. When we later take a subset of this larger network, filtering for a particular functionality, we get what we describe as <strong>function-based networks</strong>. For instance, if we would keep only the blue hubs on Figure 1, we would obtain a blue function-based network. 
+<p>Let’s start by refreshing some basic network terminology. During this post, I am gonna describe the selected RBPs as network <strong>hubs</strong>, their interaction partners as <strong>nodes</strong>, and the connections between them as <strong>edges</strong>.  This way, each square (Target RBP) is a hub, each circle (IP interactor) is a node, and the lines (connections) are edges. These three elements are what I eventually used to create the <strong>RBP interactome network</strong>. When we later take a subset of this larger network, filtering for a particular functionality, we get what we describe as <strong>function-based networks</strong>. For instance, if we would keep only the blue hubs, we would obtain a blue function-based network. 
 Now that I have established the network <em>lingua franca</em>, we can focus on our 40 RBP candidates. I selected them with the idea that, ultimately, they would become the hubs on the function-based networks. Thus it became paramount to select <strong>well-studied</strong> candidates with <strong>central roles</strong> on their pathways. I relied on the <a href="https://www.kegg.jp/" target="_blank" rel="noopener">KEGG</a> and <a href="https://reactome.org/" target="_blank" rel="noopener">Reactome</a> databases to query RBPs involved in <strong>RNA biology pathways</strong> such as degradation or splicing. Finally, our <strong>candidates</strong> needed to be included on the TAP tagged comercial library so I could capture them with antibodies.</p>
 <h4 id="interactors-data">Interactors data</h4>
 
@@ -929,10 +930,10 @@ Now that I have established the network <em>lingua franca</em>, we can focus on 
 <figure  id="figure-immunoprecipitation-experimental-design">
   <div class="d-flex justify-content-center">
     <div class="w-100" ><img alt="Immunoprecipitation experimental design" srcset="
-               /project/rbpyeast/Picture2_hu35c416225f13a2100881285b01a6a7bd_1282386_0e4241f7aa1253a53d5d72402750f05e.webp 400w,
+               /project/rbpyeast/Picture2_hu35c416225f13a2100881285b01a6a7bd_1282386_475b0fd5792c112fb369307a707e494e.webp 400w,
                /project/rbpyeast/Picture2_hu35c416225f13a2100881285b01a6a7bd_1282386_ec40b92233724084d9c1d0c570b00b65.webp 760w,
                /project/rbpyeast/Picture2_hu35c416225f13a2100881285b01a6a7bd_1282386_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
-               src="/project/rbpyeast/Picture2_hu35c416225f13a2100881285b01a6a7bd_1282386_0e4241f7aa1253a53d5d72402750f05e.webp"
+               src="/project/rbpyeast/Picture2_hu35c416225f13a2100881285b01a6a7bd_1282386_475b0fd5792c112fb369307a707e494e.webp"
                width="376"
                height="760"
                loading="lazy" data-zoomable /></div>
@@ -943,12 +944,281 @@ Now that I have established the network <em>lingua franca</em>, we can focus on 
 <ul>
 <li><strong>Protein-Protein interactors (PPI)</strong>: Due to the RNA digestion, by RNase A, all the nodes in this group interact with our hubs in an <strong>RNA independent</strong> manner.</li>
 <li><strong>RNA-dependent interactors (RDI)</strong>: This group contains all the nodes that interact with our hubs in an <strong>RNA dependent</strong> manner. 
-For both groups, the interactors were measured and quantified with a label-free quantification mass-spectrometry protocol. Together with the hub candidates, the PPI and RDI nodes are the building blocks which I used to construct the function-based networks.</li>
+For both groups, the interactors were measured and quantified with a label-free quantification (LFQ) MS protocol. Together with the hub candidates, the PPI and RDI nodes are the building blocks which I used to construct the function-based networks.</li>
 </ul>
 <h3 id="data-analysis">Data analysis</h3>
-<p>I have <strong>not included any code</strong> on this post but, If you get curious and want to check it, you can find it available at the following github repository <a href="https://github.com/AFraderaSola/Scerevisiae_RBPs_Interactome" target="_blank" rel="noopener">github repository</a></p>
+<p>I have not included any code on this post but, If you get curious and want to check it, you can find it available at the following github repository <a href="https://github.com/AFraderaSola/Scerevisiae_RBPs_Interactome" target="_blank" rel="noopener">github repository</a>. I will reference which subfolders belong to each analysis on their corresponding subsection.</p>
 <h4 id="rbp-interactors-quantification">RBP interactors quantification</h4>
-<p>During this section, I am gonna <strong>assume</strong> you know some <strong>basic mass-spectrometry concepts</strong>; otherwise you can check this nice review from <a href="https://portlandpress.com/biochemist/article/42/5/64/226371/A-beginner-s-guide-to-mass-spectrometry-based" target="_blank" rel="noopener">Sinha <em>et al.</em></a> to freshen them up.</p>
+<p>The code for this analysis can be found in the following <a href="https://github.com/AFraderaSola/Scerevisiae_RBPs_Interactome/tree/main/01_IPscreen/YAFXXX/LFQ/01_CoreAnalysis" target="_blank" rel="noopener">github repository subfolder</a>. During this section, I am gonna assume you know some basic MS concepts; otherwise you can check this nice review from Sinha et al. [https://portlandpress.com/biochemist/article/42/5/64/226371/A-beginner-s-guide-to-mass-spectrometry-based] to freshen them up.</p>
+<p>After the immunoprecipitation experiments, I obtained, in quadruplicate, protein elution products for three conditions:</p>
+<ul>
+<li><strong>Wild type (WT)</strong></li>
+<li><strong>TAP-tagged IP RNase treated (RNase)</strong></li>
+<li><strong>TAP-tagged IP untreated (IP)</strong>
+These are ready for MS measurement; as mentioned before, I choose a LFQ protocol. Long story short, this means we can directly use our digested peptides without adding any chemical or metabolic labelling. This way, for each of our selected 40 candidates I would <strong>quantify</strong> their RNase and IP <strong>interactors</strong> so I could compare them to each other and against a WT. 
+The first step in the quantification is to match the MS peptide spectra with protein groups; for this purpose, I use the andromeda search engine as incorporated in <a href="https://www.maxquant.org/" target="_blank" rel="noopener">MaxQuant</a>. This allows for protein quantification, based on the peptide intensity. I will not go into further details on how LFQ works, you can chek this review from <a href="https://www.sciencedirect.com/science/article/pii/S1535947620333107?via%3Dihub" target="_blank" rel="noopener">Cox <em>et al.</em></a> if you want to learn more.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-protein-filtering-steps">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Protein filtering steps" srcset="
+               /project/rbpyeast/Picture3_huc656d23deb9cb997dc9569e5e7f0f90e_126243_05ebdb0b2e79e702c84b1c2f0f35d0eb.webp 400w,
+               /project/rbpyeast/Picture3_huc656d23deb9cb997dc9569e5e7f0f90e_126243_f4b851d865acd9d438268c9915e00825.webp 760w,
+               /project/rbpyeast/Picture3_huc656d23deb9cb997dc9569e5e7f0f90e_126243_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/project/rbpyeast/Picture3_huc656d23deb9cb997dc9569e5e7f0f90e_126243_05ebdb0b2e79e702c84b1c2f0f35d0eb.webp"
+               width="760"
+               height="634"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Protein filtering steps
+    </figcaption></figure>
+<p>With our proteins identified we proceed with a series of quality control filtering steps; mainly we filter out the following protein groups:</p>
+<ul>
+<li><strong>Known contaminants</strong>, present on any MS experiment (i. e., keratin), as provided by the <a href="http://www.coxdocs.org/doku.php?id=maxquant:start_downloads.htm" target="_blank" rel="noopener">Cox lab</a></li>
+<li><strong>Reverse peptides</strong></li>
+<li>Filter peptides by <strong>razor</strong> and <strong>unique peptide number</strong>. This way, I only keep protein with a minimum of razor+unique peptide count higher than 2 and a minimum of unique peptide count higher than 1.</li>
+<li>Filter out by <strong>quantification event</strong>. This way, I decide to keep only proteins with a minimum of 2 quantification events along the replicates. Thus, any protein without an intensity value associated (not NA) in, at least, two out of four replicates will be filtered out.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-lfq-intesities-distribution-original-vs-imputed-values">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="LFQ intesities distribution: original vs. imputed values" srcset="
+               /project/rbpyeast/Picture4_hu7bc3ce988d6af66fb46b53d9dd37ab2f_361805_727a8585e5037165949528f03c358b28.webp 400w,
+               /project/rbpyeast/Picture4_hu7bc3ce988d6af66fb46b53d9dd37ab2f_361805_f9bddd871f7aea633ea4e1b0fece7b41.webp 760w,
+               /project/rbpyeast/Picture4_hu7bc3ce988d6af66fb46b53d9dd37ab2f_361805_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/project/rbpyeast/Picture4_hu7bc3ce988d6af66fb46b53d9dd37ab2f_361805_727a8585e5037165949528f03c358b28.webp"
+               width="538"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      LFQ intesities distribution: original vs. imputed values
+    </figcaption></figure>
+<p>Next step is dealing with the <strong>missing values</strong>. A known issue of MS experiments is the <strong>abundance of NA values</strong> along the detected protein groups due to technical limitations. For instance, a protein group could be identified with an average intensity of 25 in three replicates and have an NA value on the fourth. Our approach for these NA values is to assume that the protein was <strong>not detected due to technical limitations</strong> not because it was not present in the protein mixture. This way, we decide to impute an intensity value for all NA values still present <strong>after the filtering steps</strong>. We do so by shifting a <strong>beta distribution</strong> obtained from the LFQ intensity values to the <strong>limit of quantitation</strong>. This way, the resulting imputed values will always be random values constricted to the lowest end of our LFQ intensities. This is just one approach among many; if you are interested in further reading regarding MS data imputation, I would suggest this article from <a href="https://www.nature.com/articles/s41598-017-19120-0" target="_blank" rel="noopener">Wei <em>et al.</em></a>. 
+With our NA values imputed, we are ready to proceed with a series of quality control and exploratory analysis checks. These are pretty standard on any omics analysis (i. e., clustering by pearson correlation coefficient and dimensionality reduction by PCA) so I will not cover them in this post.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-volcano-plots-ppi-comparison-left-and-rdi-comparison-right">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Volcano plots: PPI comparison (left) and RDI comparison (right)" srcset="
+               /project/rbpyeast/Picture5_huf8d1ec54b25971814006d6b6d672e619_191991_47963ec3c8871237f2aafaf6ae100ee2.webp 400w,
+               /project/rbpyeast/Picture5_huf8d1ec54b25971814006d6b6d672e619_191991_4c5bbb4ee52bdf2e416d3e3c9501c63b.webp 760w,
+               /project/rbpyeast/Picture5_huf8d1ec54b25971814006d6b6d672e619_191991_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/project/rbpyeast/Picture5_huf8d1ec54b25971814006d6b6d672e619_191991_47963ec3c8871237f2aafaf6ae100ee2.webp"
+               width="760"
+               height="236"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Volcano plots: PPI comparison (left) and RDI comparison (right)
+    </figcaption></figure>
+<p>This leads to our final step, where we assess quantified interactors differences among our three conditions. We do so with a standard <a href="https://en.wikipedia.org/wiki/Student%27s_t-test" target="_blank" rel="noopener">t-test</a>. The results are <strong>visualised as a volcano plot</strong>, which offers an intuitive way to identify enriched interactors and <strong>benchmark the experiment quality</strong> by observing the RBP-TAP and RNase behaviour. As described before, we are interested in obtaining to groups of interactors, as shown for PAB1 in the example volcano plots:</p>
+<ul>
+<li><strong>PPI</strong>, resulting from the comparison of a treated TAP-tagged RBP (RNase) to a wildt type (WT). In this comparison, the <strong>RBP-TAP targeted</strong> during the immunoprecipitation gets <strong>clearly enriched</strong> as it is not pulled down on the WT condition. On the other hand, the RNase enzyme falls on the <strong>background</strong> due to its presence in both conditions. All RBP-TAP <strong>RNA independent interactors</strong> get enriched in this comparison.</li>
+<li><strong>RDI</strong>, resulting from the comparison of an untreated TAP-tagged RBP (IP) to a treated TAP-tagged RBP (RNase). In this comparison, the <strong>RBP-TAP targeted</strong> during the immunoprecipitation falls on the <strong>background</strong> as it is equally pulled down in both conditions. On the other hand, the RNase enzyme gets <strong>negatively enriched</strong> as it is only present in the treated condition (RNase).  All RBP-TAP <strong>RNA dependent interactors</strong> get enriched in this comparison.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-bar-plot-ppi-green-rdi-orange-and-ovelap-purple-groups">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Bar plot: PPI (green), RDI (orange) and ovelap (purple) groups" srcset="
+               /project/rbpyeast/Picture6_hu66ab9d9071761b41732509a968470b32_88437_4f278e0db86a1e75f6f12ab627d66b42.webp 400w,
+               /project/rbpyeast/Picture6_hu66ab9d9071761b41732509a968470b32_88437_38f52b40cac49f1c6c9625a40e87ccfc.webp 760w,
+               /project/rbpyeast/Picture6_hu66ab9d9071761b41732509a968470b32_88437_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/project/rbpyeast/Picture6_hu66ab9d9071761b41732509a968470b32_88437_4f278e0db86a1e75f6f12ab627d66b42.webp"
+               width="760"
+               height="242"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Bar plot: PPI (green), RDI (orange) and ovelap (purple) groups
+    </figcaption></figure>
+<p>This way, we repeated this setup for all our 40 RBPs and we obtained two <strong>clearly different</strong> groups (minimal overlap, <strong>in purple</strong> on the barplot image) corresponding to the <strong>PPI</strong> and <strong>RDI</strong>.</p>
+<h4 id="functional-analysis">Functional Analysis</h4>
+<p>The code for this analysis can be found in the following <a href="https://github.com/AFraderaSola/Scerevisiae_RBPs_Interactome/tree/main/01_IPscreen/YAFXXX/LFQ/02_FunctionalAnalysis" target="_blank" rel="noopener">github repository subfolder</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-functional-enrichment-heat-map">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Functional enrichment heat map" srcset="
+               /project/rbpyeast/Picture7_hu3bd87f2f219f2af0a026a5f839249d06_924270_dd33122f2c1861fe157ecfbd895d93d7.webp 400w,
+               /project/rbpyeast/Picture7_hu3bd87f2f219f2af0a026a5f839249d06_924270_90649bf15eb47d424e0a47a316722aaf.webp 760w,
+               /project/rbpyeast/Picture7_hu3bd87f2f219f2af0a026a5f839249d06_924270_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/project/rbpyeast/Picture7_hu3bd87f2f219f2af0a026a5f839249d06_924270_dd33122f2c1861fe157ecfbd895d93d7.webp"
+               width="760"
+               height="386"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Functional enrichment heat map
+    </figcaption></figure>
+<p>After the (long) quantification section, I described how our network <strong>hubs</strong> (target tagged RBPs) and <strong>nodes</strong> (<strong>PPI</strong> and <strong>RDI</strong> groups) were obtained. At this point I would be ready to build the interactome network, as the <strong>edges</strong> just connect the nodes to the hubs when they were quantified on their respective experiments. I indeed have all the elements to build a <em>basic</em> interactome network, but I am interested in building a <em>function-based</em> network. Thus I need to classify the hubs by <strong>function</strong> in order to do so. I already selected them following functional criteria and one could argue this would be already enough. But I want to take it a step further and see if not just the <em>hubs</em> have associated functions but also their associated <em>nodes</em>. Thus, I choose to perform a functional enrichment analysis for each hub associated nodes. Again, this is a standard analysis included on many omics workflows so I will not cover it deeply. Long story short, I performed an <strong>over-representation analysis</strong> as implemented in the <a href="https://yulab-smu.top/biomedical-knowledge-mining-book/enrichment-overview.html" target="_blank" rel="noopener">ClusterProfiler R package</a> which, in brief, calculates p-values by hypergeometric distribution from a experimentally derived list of enriched IDs (PPI or RDI groups) and its background (Quantified proteins). This way we obtained the PPI and RDI associated <a href="https://www.kegg.jp/" target="_blank" rel="noopener">KEGG</a> pathways for each hub, if any.</p>
+<h4 id="network-analysis">Network Analysis</h4>
+<p>Now comes the fun part; I do have all the <strong>elements</strong> to construct a network (hubs, nodes and edges) and a <strong>data-driven functional classification</strong> criteria. Thus I can proceed to build the networks, with the R <a href="https://igraph.org/r/" target="_blank" rel="noopener">igraph</a>  <strong>nicely algorithm</strong> implementation. For the <strong>PPI</strong> and <strong>RDI</strong> data, I decided to create two different kind of networks:</p>
+<ul>
+<li>A <strong>global network</strong>, containing all 40 hubs. In such networks, hubs and their edges would be colour highlighted when they had a <strong>unique associated function</strong>.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-global-network-ppi-left-and-rdi-right-groups-as-a-network">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Global network: PPI (left) and RDI (right) groups as a network" srcset="
+               /project/rbpyeast/Picture8_huff5e56031cfadb1e54d6aa6589d7e937_17314743_11692a4051b4def11e0212f700621632.webp 400w,
+               /project/rbpyeast/Picture8_huff5e56031cfadb1e54d6aa6589d7e937_17314743_9383467334794244d1f0f7897e704093.webp 760w,
+               /project/rbpyeast/Picture8_huff5e56031cfadb1e54d6aa6589d7e937_17314743_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/project/rbpyeast/Picture8_huff5e56031cfadb1e54d6aa6589d7e937_17314743_11692a4051b4def11e0212f700621632.webp"
+               width="760"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Global network: PPI (left) and RDI (right) groups as a network
+    </figcaption></figure>
+<ul>
+<li>A <strong>function-based subnetwork</strong>, containing all hubs associated with a particular subnetwork. For these networks I also colour highlighted the nodes, so they would show whether they have been reported before or not on the <strong>BioGRID database</strong> and whether they have been <strong>classified as RBPs</strong> or not.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-function-based--subnetwork-ppi-left-and-rdi-right-groups-as-a-network">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Function-based  subnetwork: PPI (left) and RDI (right) groups as a network" srcset="
+               /project/rbpyeast/Picture9_hu9e0a498f5e9e1145609a8ce9ab0ad3f0_2484197_18a8faf1998baaa3ca210c2f238cda2f.webp 400w,
+               /project/rbpyeast/Picture9_hu9e0a498f5e9e1145609a8ce9ab0ad3f0_2484197_dc3e5d67c077d9fd94f67e79b935cc50.webp 760w,
+               /project/rbpyeast/Picture9_hu9e0a498f5e9e1145609a8ce9ab0ad3f0_2484197_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/project/rbpyeast/Picture9_hu9e0a498f5e9e1145609a8ce9ab0ad3f0_2484197_18a8faf1998baaa3ca210c2f238cda2f.webp"
+               width="760"
+               height="541"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Function-based  subnetwork: PPI (left) and RDI (right) groups as a network
+    </figcaption></figure>
+<p>Additionally I also combined the <strong>PPI</strong> and <strong>RDI</strong> groups into a <strong>global network</strong> and <strong>function-based subnetwork</strong>. For these networks, instead of highlighting the hubs or the nodes I choose <strong>to highlight the edges</strong> to show their group association (PPI, RDI or overlap).</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<figure  id="figure-global-and-function-based-networks-ppi-and-rdi-groups-combined-as-a-network">
+  <div class="d-flex justify-content-center">
+    <div class="w-100" ><img alt="Global and Function-based networks: PPI and RDI groups combined as a network" srcset="
+               /project/rbpyeast/Picture10_hu80227aec0603cc357c2b9080a880b415_20395151_f6c22bc77b8796f4aba812d69044cb64.webp 400w,
+               /project/rbpyeast/Picture10_hu80227aec0603cc357c2b9080a880b415_20395151_4b4161ccd4eb948ab77076b5b4e4966b.webp 760w,
+               /project/rbpyeast/Picture10_hu80227aec0603cc357c2b9080a880b415_20395151_1200x1200_fit_q75_h2_lanczos_3.webp 1200w"
+               src="/project/rbpyeast/Picture10_hu80227aec0603cc357c2b9080a880b415_20395151_f6c22bc77b8796f4aba812d69044cb64.webp"
+               width="633"
+               height="760"
+               loading="lazy" data-zoomable /></div>
+  </div><figcaption>
+      Global and Function-based networks: PPI and RDI groups combined as a network
+    </figcaption></figure>
+<h3 id="conclusion">Conclusion</h3>
+<p>All these data analysis and network building are created with a particular goal in mind: <strong>serve as a resource</strong>. We point out which <strong>nodes are novel</strong> (non reported at BioGRID) and whether they are <strong>classified as RBPs or not</strong>. Additionally we pointed out potential functional associations with our <strong>function-based</strong> networks. Following the <strong>guilt-by-association</strong> principle, if a node is concurrently associated with other nodes and hubs that are participating, for instance, in splicing pathways you are likely involved in splicing. Thus this can be used as a starting point  for <strong>in-depth functional characterization</strong>. To facilitate it, I constructed a user-friendly <strong>shiny app</strong> <a href="https://butterlab.imb-mainz.de/ScRBPinteractome/" target="_blank" rel="noopener">https://butterlab.imb-mainz.de/ScRBPinteractome/</a> were all the networks can be explored. With this, I hope that data becomes <strong>accessible</strong> and <strong>RNA research labs</strong> are able to deepen the RBP research field.</p>
 
     </div>
 
