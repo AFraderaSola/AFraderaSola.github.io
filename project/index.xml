@@ -683,7 +683,7 @@ With our NA values imputed, we are ready to proceed with a series of quality con
         &lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#rnaseq-degs-and-r-pacakges-for-data-analysis&#34;&gt;RNAseq, DEGs and R pacakges for data analysis&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#jury-vote-function-to-determine-degs&#34;&gt;Jury vote function to determine DEGs&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#case-of-study-drought-resistance-in-ryegrass&#34;&gt;Case of study: Drought resistance in ryegrass&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#case-of-study-drought-resistance-in-perennial-ryegrass&#34;&gt;Case of study: Drought resistance in perennial ryegrass&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
@@ -768,10 +768,10 @@ With our NA values imputed, we are ready to proceed with a series of quality con
 &lt;figure  id=&#34;figure-jury-vote-score-genes-are-classified-as-not-degs-score--0-or-degs-score--1-4-robustness-of-the-deg-can-be-assessed-looking-at-the-score-1-least-robust-4-most-robust&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Jury vote score. Genes are classified as not DEGs (score = 0) or DEGs (score = 1-4). Robustness of the DEG can be assessed looking at the score (1 least robust, 4 most robust)&#34; srcset=&#34;
-               /project/lolium/featured_hu5ac57e246bf4a08b7e10d7ac1a775b28_21751_1aa79c81ed25cf821fd0adeb2073b815.webp 400w,
+               /project/lolium/featured_hu5ac57e246bf4a08b7e10d7ac1a775b28_21751_0e1d61013f318e5dddc1212b76e6af9b.webp 400w,
                /project/lolium/featured_hu5ac57e246bf4a08b7e10d7ac1a775b28_21751_60847caafbf22af21209c2f7fa00844d.webp 760w,
                /project/lolium/featured_hu5ac57e246bf4a08b7e10d7ac1a775b28_21751_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/lolium/featured_hu5ac57e246bf4a08b7e10d7ac1a775b28_21751_1aa79c81ed25cf821fd0adeb2073b815.webp&#34;
+               src=&#34;https://AFraderaSola.github.io/project/lolium/featured_hu5ac57e246bf4a08b7e10d7ac1a775b28_21751_0e1d61013f318e5dddc1212b76e6af9b.webp&#34;
                width=&#34;760&#34;
                height=&#34;353&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
@@ -779,10 +779,11 @@ With our NA values imputed, we are ready to proceed with a series of quality con
       Jury vote score. Genes are classified as not DEGs (score = 0) or DEGs (score = 1-4). Robustness of the DEG can be assessed looking at the score (1 least robust, 4 most robust)
     &lt;/figcaption&gt;&lt;/figure&gt;
 &lt;p&gt;It also gives the flexibility to decide whether you want to maximize your results (taking any DEGs in any package, score of 1) or get a subset of very reliable, robust results (taking only DEGs in all packages, score of 4).&lt;/p&gt;
-&lt;h3 id=&#34;case-of-study-drought-resistance-in-ryegrass&#34;&gt;Case of study: Drought resistance in ryegrass&lt;/h3&gt;
+&lt;h3 id=&#34;case-of-study-drought-resistance-in-perennial-ryegrass&#34;&gt;Case of study: Drought resistance in perennial ryegrass&lt;/h3&gt;
 &lt;p&gt;&lt;em&gt;Lolium perenne&lt;/em&gt;, commonly known as perennial ryegrass, is a cool-season grass widely used in temperate regions for forage production, turfgrass, and erosion control due to its rapid establishment, high productivity, and quality. In addition, &lt;em&gt;L. perenne&lt;/em&gt; has gained interest as a model species for studying abiotic stress tolerance, particularly drought resistance.&lt;/p&gt;
 &lt;p&gt;Drought is a major environmental stress that affects plant growth and productivity, and its impact is expected to increase with climate change. Therefore, understanding the molecular mechanisms underlying drought resistance is crucial for developing more resilient crops. &lt;em&gt;L. perenne&lt;/em&gt; has several advantages for studying drought resistance, such as its ability to survive and recover from drought, its relatively small genome size, and the availability of genetic resources and tools.&lt;/p&gt;
 &lt;p&gt;Overall, &lt;em&gt;L. perenne&lt;/em&gt; is a valuable species for studying drought resistance and developing more resilient crops. Its use as a model species for abiotic stress research has the potential to improve our understanding of the molecular basis of stress tolerance and aid in the development of new crops with improved resilience.&lt;/p&gt;
+&lt;p&gt;RNAseq was collected from &lt;em&gt;L. perenne&lt;/em&gt; root and leaf tissue at different soil water content; 35%, considered a regular condition (no stress) and 15%, 5%, and 1%, increasing stress conditions.&lt;/p&gt;
 
 
 
@@ -802,17 +803,16 @@ With our NA values imputed, we are ready to proceed with a series of quality con
 &lt;figure  id=&#34;figure-experimental-conditions-to-determine-l-perenne-degs-under-drought-conditions&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Experimental conditions to determine L. perenne DEGs under drought conditions&#34; srcset=&#34;
-               /project/lolium/Picture1_hu0066baea7505d32ea10b1f818876bad8_179072_cadda0eb10ffe948d98b612b109313fb.webp 400w,
-               /project/lolium/Picture1_hu0066baea7505d32ea10b1f818876bad8_179072_97e1193b3d159759b96f995afe731a4b.webp 760w,
-               /project/lolium/Picture1_hu0066baea7505d32ea10b1f818876bad8_179072_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/lolium/Picture1_hu0066baea7505d32ea10b1f818876bad8_179072_cadda0eb10ffe948d98b612b109313fb.webp&#34;
+               /project/lolium/Picture1_hu2c53f1038efb895537526eccb7ebc2ab_183807_0894d142702a5ab232797667ce99087d.webp 400w,
+               /project/lolium/Picture1_hu2c53f1038efb895537526eccb7ebc2ab_183807_84bf21ce43dec3925a0ccfab323400c7.webp 760w,
+               /project/lolium/Picture1_hu2c53f1038efb895537526eccb7ebc2ab_183807_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://AFraderaSola.github.io/project/lolium/Picture1_hu2c53f1038efb895537526eccb7ebc2ab_183807_0894d142702a5ab232797667ce99087d.webp&#34;
                width=&#34;760&#34;
                height=&#34;652&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;figcaption&gt;
       Experimental conditions to determine L. perenne DEGs under drought conditions
     &lt;/figcaption&gt;&lt;/figure&gt;
-&lt;p&gt;RNAseq was collected from &lt;em&gt;L. perenne&lt;/em&gt; root and leaf tissue at different soil water content; 35%, considered a regular condition (no stress) and 15%, 5%, and 1%, increasing stress conditions.&lt;/p&gt;
 </description>
     </item>
     
