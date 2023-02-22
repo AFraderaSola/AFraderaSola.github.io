@@ -17,7 +17,25 @@
       <link>https://AFraderaSola.github.io/project/lolium/</link>
       <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
       <guid>https://AFraderaSola.github.io/project/lolium/</guid>
-      <description>&lt;p&gt;Under construction - Full details available soon&lt;/p&gt;
+      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+&lt;p&gt;My M.Sc project aimed to develop a scoring function for detecting differentially expressed genes (DEGs) using RNA-Seq data. I was motivated by the abundance of existing packages and resources for DEG analysis and wanted to investigate the differences between the most popular methods, compare their results, and determine the optimal approach for identifying DEGs. To achieve this, I utilized a novel dataset focused on drought resistance in the ryegrass species &lt;em&gt;Lolium perenne&lt;/em&gt; to test the various DEG detection packages and optimize the methodology. Through this project, I was able to contribute to the important field of crop agriculture while improving the accuracy and efficiency of DEG analysis.&lt;/p&gt;
+&lt;h1 id=&#34;rnaseq-degs-and-r-pacakges-for-data-analysis&#34;&gt;RNAseq, DEGs and R pacakges for data analysis&lt;/h1&gt;
+&lt;p&gt;RNA sequencing (RNAseq) is a widely used technique to measure gene expression levels in cells or tissues. RNAseq data analysis involves several steps, including quality control, alignment, quantification of gene expression, differential gene expression analysis, and functional enrichment analysis. Each step requires careful consideration to ensure the reliability and reproducibility of the results. There are several tools and packages available for each step, and choosing the appropriate ones is critical to achieving accurate and meaningful results. RNAseq data analysis can provide insights into gene regulation, identify novel transcripts, and discover biomarkers for disease diagnosis and treatment.&lt;/p&gt;
+&lt;p&gt;I decided to focus on three widely used packages (edgeR, DESeq2 and limma+voom) and a less-cannonical one (baySeq):&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://academic.oup.com/bioinformatics/article/26/1/139/182458?login=true&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;edgeR&lt;/strong&gt;&lt;/a&gt;: edgeR (Empirical analysis of Digital Gene Expression in R) is a software package used for the identification of differentially expressed genes in RNAseq datasets. It uses a negative binomial model and empirical Bayes estimation to estimate the dispersion parameters and gene-wise dispersion estimates. This package can be used for single-factor or multi-factor experimental designs.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://genomebiology.biomedcentral.com/articles/10.1186/s13059-014-0550-8&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;DESeq2&lt;/strong&gt;&lt;/a&gt;: DESeq2 is a R package that can be used to analyze differential gene expression in RNAseq experiments. It uses the negative binomial distribution to model count data and provides methods for estimating size factors and dispersion parameters. DESeq2 also provides methods for normalizing data, performing hypothesis testing, and visualizing results.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://f1000research.com/articles/5-1408/v3&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;limma+voom&lt;/strong&gt;&lt;/a&gt;: limma (Linear Models for Microarray Data) is an R package that can be used to analyze differential gene expression in RNAseq datasets. It uses linear models to analyze differential expression and provides a range of functions for data normalization and visualization. The voom (Variance modeling at the Observed Mean) function in limma can be used to transform count data into log2-counts per million (logCPM) values, which can then be used with limma for differential expression analysis.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a href=&#34;https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-11-422&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;baySeq&lt;/strong&gt;&lt;/a&gt;: baySeq is a software package for analyzing RNAseq data using Bayesian methods. It can be used to identify differentially expressed genes, quantify expression levels, and estimate the probability of differential expression. baySeq models count data using a negative binomial distribution and provides a flexible framework for incorporating prior information about gene expression.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
 </description>
     </item>
     
