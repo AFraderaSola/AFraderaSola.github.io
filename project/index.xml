@@ -684,6 +684,7 @@ With our NA values imputed, we are ready to proceed with a series of quality con
         &lt;li&gt;&lt;a href=&#34;#rnaseq-degs-and-r-pacakges-for-data-analysis&#34;&gt;RNAseq, DEGs and R pacakges for data analysis&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#jury-vote-function-to-determine-degs&#34;&gt;Jury vote function to determine DEGs&lt;/a&gt;&lt;/li&gt;
         &lt;li&gt;&lt;a href=&#34;#case-of-study-drought-resistance-in-perennial-ryegrass&#34;&gt;Case of study: Drought resistance in perennial ryegrass&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#conclusion&#34;&gt;Conclusion&lt;/a&gt;&lt;/li&gt;
       &lt;/ul&gt;
     &lt;/li&gt;
   &lt;/ul&gt;
@@ -803,16 +804,81 @@ With our NA values imputed, we are ready to proceed with a series of quality con
 &lt;figure  id=&#34;figure-experimental-conditions-to-determine-l-perenne-degs-under-drought-conditions&#34;&gt;
   &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
     &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Experimental conditions to determine L. perenne DEGs under drought conditions&#34; srcset=&#34;
-               /project/lolium/Picture1_hu2c53f1038efb895537526eccb7ebc2ab_183807_0894d142702a5ab232797667ce99087d.webp 400w,
-               /project/lolium/Picture1_hu2c53f1038efb895537526eccb7ebc2ab_183807_84bf21ce43dec3925a0ccfab323400c7.webp 760w,
+               /project/lolium/Picture1_hu2c53f1038efb895537526eccb7ebc2ab_183807_e39c9356b37b6afaa56dba9a3c6b02ff.webp 400w,
+               /project/lolium/Picture1_hu2c53f1038efb895537526eccb7ebc2ab_183807_9b91d7c309d941e78d0ba49150ee088f.webp 760w,
                /project/lolium/Picture1_hu2c53f1038efb895537526eccb7ebc2ab_183807_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/lolium/Picture1_hu2c53f1038efb895537526eccb7ebc2ab_183807_0894d142702a5ab232797667ce99087d.webp&#34;
+               src=&#34;https://AFraderaSola.github.io/project/lolium/Picture1_hu2c53f1038efb895537526eccb7ebc2ab_183807_e39c9356b37b6afaa56dba9a3c6b02ff.webp&#34;
                width=&#34;760&#34;
                height=&#34;652&#34;
                loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
   &lt;/div&gt;&lt;figcaption&gt;
       Experimental conditions to determine L. perenne DEGs under drought conditions
     &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Then, I used the previously described jury vote sytem to determine the DEGs.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-number-of-degs-per-rnaseq-package&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Number of DEGs per RNAseq package&#34; srcset=&#34;
+               /project/lolium/Picture2_hub874c0c00bb5cdfc7bc0cf4e8fb343d1_323155_0480294f8ac0ec4b2b941bd46cb39c5f.webp 400w,
+               /project/lolium/Picture2_hub874c0c00bb5cdfc7bc0cf4e8fb343d1_323155_c02613c058a79823112fc97504eec378.webp 760w,
+               /project/lolium/Picture2_hub874c0c00bb5cdfc7bc0cf4e8fb343d1_323155_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://AFraderaSola.github.io/project/lolium/Picture2_hub874c0c00bb5cdfc7bc0cf4e8fb343d1_323155_0480294f8ac0ec4b2b941bd46cb39c5f.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;557&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Number of DEGs per RNAseq package
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;The results of the analysis showed that edgeR, DESeq2, and limma+voom had a similar performance in terms of identifying differentially expressed genes (DEGs), as evidenced by the low number of DEGs unique to each package. However, BaySeq yielded a higher number of DEGs using its own methodology.&lt;/p&gt;
+&lt;p&gt;In addition to comparing the packages, we also conducted a functional analysis to investigate whether the genes associated with drought conditions were functionally related. The results of the functional analysis provided valuable insights into the mechanisms by which &lt;em&gt;L. perenne&lt;/em&gt; adapts to drought conditions.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-number-of-degs-per-rnaseq-package&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Number of DEGs per RNAseq package&#34; srcset=&#34;
+               /project/lolium/Picture3_huc57a54767c1656f2717898bbed19fdb3_238664_251f28bb0f78fc89d7c084ecd2a12d00.webp 400w,
+               /project/lolium/Picture3_huc57a54767c1656f2717898bbed19fdb3_238664_59e89504d42dcd0fc3937af00d4c354f.webp 760w,
+               /project/lolium/Picture3_huc57a54767c1656f2717898bbed19fdb3_238664_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://AFraderaSola.github.io/project/lolium/Picture3_huc57a54767c1656f2717898bbed19fdb3_238664_251f28bb0f78fc89d7c084ecd2a12d00.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;442&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Number of DEGs per RNAseq package
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
+&lt;p&gt;RNAseq is a powerful tool to measure gene expression levels and identify DEGs between different biological conditions, such as different tissues, cell types, developmental stages, or disease states. The RNAseq data analysis pipeline includes several steps, such as quality control, alignment, gene expression quantification, normalization, and statistical testing for differential expression analysis. Several packages and tools are available for each step, and the choice of appropriate methods is crucial for obtaining reliable and biologically meaningful results.&lt;/p&gt;
+&lt;p&gt;In this study, we compared the performance of four popular DEGs analysis packages (edgeR, DESeq2, limma+voom, and BaySeq) for the identification of drought-responsive genes in the ryegrass Lolium perenne. We found that the three most widely used packages (edgeR, DESeq2, and limma+voom) performed similarly, while BaySeq identified a larger number of DEGs using its own methodology. We also conducted functional enrichment analysis to gain insights into the biological processes and pathways involved in the drought response in &lt;em&gt;L. perenne&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;Overall, our study demonstrates the importance of carefully selecting appropriate methods and packages for RNAseq data analysis and highlights the potential of RNAseq technology for identifying novel genes and biomarkers related to complex biological processes such as drought adaptation.&lt;/p&gt;
 </description>
     </item>
     
