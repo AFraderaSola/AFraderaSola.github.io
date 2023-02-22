@@ -91,6 +91,35 @@
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;This way, this jury vote function takes into account the results from multiple packages and weight them based on their relative performance, being a more robust and reliable identification of differentially expressed genes.&lt;/p&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-jury-vote-score-genes-are-classified-as-not-degs-score--0-or-degs-score--1-4-robustness-of-the-deg-can-be-assessed-looking-at-the-score-1-least-robust-4-most-robust&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;Jury vote score. Genes are classified as not DEGs (score = 0) or DEGs (score = 1-4). Robustness of the DEG can be assessed looking at the score (1 least robust, 4 most robust)&#34; srcset=&#34;
+               /project/lolium/featured_hu5ac57e246bf4a08b7e10d7ac1a775b28_21751_8b4891c0a9f1bb35e40fabfa5fa46dc3.webp 400w,
+               /project/lolium/featured_hu5ac57e246bf4a08b7e10d7ac1a775b28_21751_5b2d184d60755e421db96acbfa099907.webp 760w,
+               /project/lolium/featured_hu5ac57e246bf4a08b7e10d7ac1a775b28_21751_1200x1200_fit_q75_h2_lanczos_3.webp 1200w&#34;
+               src=&#34;https://AFraderaSola.github.io/project/lolium/featured_hu5ac57e246bf4a08b7e10d7ac1a775b28_21751_8b4891c0a9f1bb35e40fabfa5fa46dc3.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;353&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      Jury vote score. Genes are classified as not DEGs (score = 0) or DEGs (score = 1-4). Robustness of the DEG can be assessed looking at the score (1 least robust, 4 most robust)
+    &lt;/figcaption&gt;&lt;/figure&gt;
 &lt;p&gt;It also gives the flexibility to decide whether you want to maximize your results (taking any DEGs in any package, score of 1) or get a subset of very reliable, robust results (taking only DEGs in all packages, score of 4).&lt;/p&gt;
 </description>
     </item>
