@@ -17,11 +17,26 @@
       <link>https://AFraderaSola.github.io/project/lolium/</link>
       <pubDate>Wed, 20 Jul 2022 00:00:00 +0000</pubDate>
       <guid>https://AFraderaSola.github.io/project/lolium/</guid>
-      <description>&lt;h1 id=&#34;introduction&#34;&gt;Introduction&lt;/h1&gt;
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#rnaseq-degs-and-r-pacakges-for-data-analysis&#34;&gt;RNAseq, DEGs and R pacakges for data analysis&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#jury-vote-function-to-determine-degs&#34;&gt;Jury vote function to determine DEGs&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
+
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
 &lt;p&gt;My M.Sc project aimed to develop a scoring function for detecting differentially expressed genes (DEGs) using RNA-Seq data. I was motivated by the abundance of existing packages and resources for DEG analysis and wanted to investigate the differences between the most popular methods, compare their results, and determine the optimal approach for identifying DEGs. To achieve this, I utilized a novel dataset focused on drought resistance in the ryegrass species &lt;em&gt;Lolium perenne&lt;/em&gt; to test the various DEG detection packages and optimize the methodology. Through this project, I was able to contribute to the important field of crop agriculture while improving the accuracy and efficiency of DEG analysis.&lt;/p&gt;
-&lt;h1 id=&#34;rnaseq-degs-and-r-pacakges-for-data-analysis&#34;&gt;RNAseq, DEGs and R pacakges for data analysis&lt;/h1&gt;
-&lt;p&gt;RNA sequencing (RNAseq) is a widely used technique to measure gene expression levels in cells or tissues. RNAseq data analysis involves several steps, including quality control, alignment, quantification of gene expression, differential gene expression analysis, and functional enrichment analysis. Each step requires careful consideration to ensure the reliability and reproducibility of the results. There are several tools and packages available for each step, and choosing the appropriate ones is critical to achieving accurate and meaningful results. RNAseq data analysis can provide insights into gene regulation, identify novel transcripts, and discover biomarkers for disease diagnosis and treatment.&lt;/p&gt;
-&lt;p&gt;I decided to focus on three widely used packages (edgeR, DESeq2 and limma+voom) and a less-cannonical one (baySeq):&lt;/p&gt;
+&lt;h3 id=&#34;rnaseq-degs-and-r-pacakges-for-data-analysis&#34;&gt;RNAseq, DEGs and R pacakges for data analysis&lt;/h3&gt;
+&lt;p&gt;RNA sequencing (RNAseq) is a popular method for measuring gene expression levels in cells or tissues, and RNAseq data analysis involves various steps, including quality control, alignment, quantification of gene expression, differential gene expression analysis, and functional enrichment analysis. Differential gene expression analysis identifies differentially expressed genes (DEGs), which are genes that show significant changes in expression levels between two or more conditions. DEG analysis can provide valuable insights into gene regulation, discover novel transcripts, and identify potential biomarkers for disease diagnosis and treatment. DEG analysis involves several steps, including read alignment, quality control, normalization, and statistical testing, and there are several software tools and packages available for each step.&lt;/p&gt;
+&lt;p&gt;For this project, the focus was on the normalization and statistical testing stages of DEG analysis, with read alignment and quality control being performed ubiquitously throughout the analysis. The selection of the appropriate tool depends on various factors, such as study design, sample size, distribution of expression data, and desired level of sensitivity and specificity.Three widely used packages, edgeR, DESeq2, and limma+voom, were selected along with a less conventional package, baySeq, for comparison:&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;a href=&#34;https://academic.oup.com/bioinformatics/article/26/1/139/182458?login=true&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;edgeR&lt;/strong&gt;&lt;/a&gt;: edgeR (Empirical analysis of Digital Gene Expression in R) is a software package used for the identification of differentially expressed genes in RNAseq datasets. It uses a negative binomial model and empirical Bayes estimation to estimate the dispersion parameters and gene-wise dispersion estimates. This package can be used for single-factor or multi-factor experimental designs.&lt;/p&gt;
@@ -36,6 +51,47 @@
 &lt;p&gt;&lt;a href=&#34;https://bmcbioinformatics.biomedcentral.com/articles/10.1186/1471-2105-11-422&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;strong&gt;baySeq&lt;/strong&gt;&lt;/a&gt;: baySeq is a software package for analyzing RNAseq data using Bayesian methods. It can be used to identify differentially expressed genes, quantify expression levels, and estimate the probability of differential expression. baySeq models count data using a negative binomial distribution and provides a flexible framework for incorporating prior information about gene expression.&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h3 id=&#34;jury-vote-function-to-determine-degs&#34;&gt;Jury vote function to determine DEGs&lt;/h3&gt;
+&lt;p&gt;I decided to design a jury vote function that could incorporate the results from the four previously described DEGs packages (edgeR, DESeq2, limma+voom, and baySeq) with the following criteria:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ol&gt;
+&lt;li&gt;For each gene, I calculated the p-value of differential expression for each package, using the recommended or default settings for each one.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;I applied a multiple testing correction to the p-values, such as the Benjamini-Hochberg or Bonferroni correction, to control for false positive results.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;I identified the genes that have a significant p-value after multiple testing correction, using a chosen significance threshold (e.g., FDR &amp;lt; 0.05).&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;4&#34;&gt;
+&lt;li&gt;I ranked the genes based on the significance of their p-value for each gene/package, from most significant to least significant.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;5&#34;&gt;
+&lt;li&gt;I assigned a weight to each gene based on its rank, such that DEG is assigned with a value of 1 or 0 otherwise.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;6&#34;&gt;
+&lt;li&gt;I calculated a weighted average score for each gene, using the assigned weights. This would result in a single, combined score for each gene.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;ol start=&#34;7&#34;&gt;
+&lt;li&gt;I used the score to determine the strength of DEGs&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This way, this jury vote function takes into account the results from multiple packages and weight them based on their relative performance, being a more robust and reliable identification of differentially expressed genes.&lt;/p&gt;
+&lt;p&gt;It also gives the flexibility to decide whether you want to maximize your results (taking any DEGs in any package, score of 1) or get a subset of very reliable, robust results (taking only DEGs in all packages, score of 4).&lt;/p&gt;
 </description>
     </item>
     
