@@ -5,12 +5,296 @@
     <link>https://AFraderaSola.github.io/project/</link>
       <atom:link href="https://AFraderaSola.github.io/project/index.xml" rel="self" type="application/rss+xml" />
     <description>Projects</description>
-    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 31 Aug 2022 00:00:00 +0000</lastBuildDate>
+    <generator>Wowchemy (https://wowchemy.com)</generator><language>en-us</language><lastBuildDate>Wed, 15 Feb 2023 00:00:00 +0000</lastBuildDate>
     <image>
       <url>https://AFraderaSola.github.io/media/icon_huf5ee247ce1e31b4a1480ddc7a50ce984_103999_512x512_fill_lanczos_center_3.png</url>
       <title>Projects</title>
       <link>https://AFraderaSola.github.io/project/</link>
     </image>
+    
+    <item>
+      <title>Interactive CV network</title>
+      <link>https://AFraderaSola.github.io/project/cvnetwork/</link>
+      <pubDate>Wed, 15 Feb 2023 00:00:00 +0000</pubDate>
+      <guid>https://AFraderaSola.github.io/project/cvnetwork/</guid>
+      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
+  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
+  &lt;nav id=&#34;TableOfContents&#34;&gt;
+  &lt;ul&gt;
+    &lt;li&gt;
+      &lt;ul&gt;
+        &lt;li&gt;&lt;a href=&#34;#tldr&#34;&gt;TL;DR&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;The data&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;a href=&#34;#the-plot&#34;&gt;The plot&lt;/a&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+    &lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/nav&gt;
+&lt;/details&gt;
+
+&lt;h3 id=&#34;tldr&#34;&gt;TL;DR&lt;/h3&gt;
+&lt;p&gt;The main idea behind this project is to make your &lt;strong&gt;CV shine&lt;/strong&gt;,  by visualizing its data and plotting it in an interactive fashion you. Thus what I want to do is to connect the usual entries on a CV (education, positions, publications&amp;hellip;) by year, so I can visualize, in an intuitive way, how a career path has developed.&lt;/p&gt;
+&lt;p&gt;Thus our goal is to create an &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot5.html&#34; target=&#34;_blank&#34;&gt;interactive network&lt;/a&gt; of the CV. If you would like to know how to generate something similar, continue to read.&lt;/p&gt;
+&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
+&lt;p&gt;The inspiration for this network-plot is the fantastic package and tutorial &lt;a href=&#34;http://nickstrayer.me/datadrivencv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;datadrivencv&lt;/a&gt;, by &lt;a href=&#34;https://nickstrayer.me/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nick Strayer&lt;/a&gt;, which has the goal of &lt;strong&gt;automatizing the CV update&lt;/strong&gt;. To do so, you would keep each entry on the CV on a .csv file that you would later render into a a .pdf or .html file. In such file, rows correspond to each &lt;em&gt;entry&lt;/em&gt; on your CV, for instance your &lt;em&gt;education degrees&lt;/em&gt; or &lt;em&gt;job experiences&lt;/em&gt;, and columns describe the positions, for instance start year or location.&lt;/p&gt;
+&lt;h3 id=&#34;the-data&#34;&gt;The data&lt;/h3&gt;
+&lt;p&gt;The network-plot starting point is, this way, a CV entries data file. You can check out an example of a CV entries file at Nick&amp;rsquo;s Strayer tutorial &lt;a href=&#34;https://docs.google.com/spreadsheets/d/14MQICF2F8-vf8CKPF1m4lyGKO6_thG-4aSwat1e2TWc/edit#gid=917338460&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;spreadsheet&lt;/a&gt;. You can also download the necessary data to replicate this tutorial &lt;a href=&#34;https://github.com/AFraderaSola/CV/blob/master/network_post_data/network_entries.csv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;For the network plot I just need each entry on the CV and its corresponding year, so I start by filtering our data with &lt;a href=&#34;https://dplyr.tidyverse.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;dplyr&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Load entries data file:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;read.csv&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;network_entries.csv&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Filter relevant columns:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_df &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select&lt;/span&gt;(title, start, end)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I want to make sure that all entries in start and end are &lt;strong&gt;numeric&lt;/strong&gt;, as they should  be years:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;start &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.numeric&lt;/span&gt;(my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;start)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;end &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.numeric&lt;/span&gt;(my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;end)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;All non numeric entries (like empty values or years set to &amp;ldquo;current&amp;rdquo;) will be transformed into &lt;strong&gt;NA values&lt;/strong&gt;. I will use this in our favour to further filter the data.&lt;/p&gt;
+&lt;p&gt;First I want to kick out all the rows containing NA both in start and end, as those are &lt;strong&gt;time independent&lt;/strong&gt; entries (like skills) &lt;strong&gt;not relevant&lt;/strong&gt; to network-plot:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Flag NA values with the logic statement TRUE and combine columns start and year:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;filter &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;interaction&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;is.na&lt;/span&gt;(my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;start),&lt;span style=&#34;color:#a6e22e&#34;&gt;is.na&lt;/span&gt;(my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;end))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Filter out all entries that are &amp;#34;TRUE.TRUE&amp;#34; (NA values in both columns) and remove the filter columns:&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df[&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;filter &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TRUE.TRUE&amp;#34;&lt;/span&gt;,]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select&lt;/span&gt;(title, start, end)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Our last step on data cleaning is assign year values to the remaining NA:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;NA values at the &lt;strong&gt;start column&lt;/strong&gt; are assigned to be the same value that end year (i. e., a publication)&lt;/li&gt;
+&lt;li&gt;NA values at the &lt;strong&gt;end column&lt;/strong&gt; are assigned to current year (i. e., current job)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mutate&lt;/span&gt;(start &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ifelse&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;is.na&lt;/span&gt;(start), end, start))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;current_year &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; lubridate&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;year&lt;/span&gt;(lubridate&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ymd&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;Sys.Date&lt;/span&gt;()))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mutate&lt;/span&gt;(end &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ifelse&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;is.na&lt;/span&gt;(end), current_year, end))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now that the data is cleaned up, I will generate the two data frames I need for the network plot:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Nodes data,  containing each entry on the CV&lt;/li&gt;
+&lt;li&gt;Edges data, containing the (year) connections among the CV entries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;I start by generating the &lt;strong&gt;edges&lt;/strong&gt;. First step is to assign a numeric id to each entry and selecting the year columns:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; edges &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mutate&lt;/span&gt;(id &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;row_number&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; edges &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select&lt;/span&gt;(id, start, end)
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then I generate the edges with a function borrowed from the &lt;a href=&#34;http://nickstrayer.me/datadrivencv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;datadrivencv&lt;/a&gt; package:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Combine the start and end years into a integer range&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; edges &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; purrr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;pmap_dfr&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;function&lt;/span&gt;(id, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                         start, end) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;tibble&lt;/span&gt;(year &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; start&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;end, id &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; id)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}) 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Nest all entries per year range&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt;  edges &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;group_by&lt;/span&gt;(year) &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; tidyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;nest&lt;/span&gt;() &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;rename&lt;/span&gt;(ids_for_year &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; data)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Generate the edges&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;combination_indices &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;function&lt;/span&gt;(n) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  rep_counts &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; (n&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;tibble&lt;/span&gt;(a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rep&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;n, times &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; rep_counts), b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; purrr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;flatten_int&lt;/span&gt;(purrr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;map&lt;/span&gt;(rep_counts, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                                                    &lt;span style=&#34;color:#f92672&#34;&gt;~&lt;/span&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                                                      &lt;span style=&#34;color:#a6e22e&#34;&gt;tail&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;n, .x)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                                                    })))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; edges &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; purrr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;pmap_dfr&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;function&lt;/span&gt;(year, ids_for_year) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;combination_indices&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;nrow&lt;/span&gt;(ids_for_year)) &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;transmute&lt;/span&gt;(year &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; year, 
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                               from &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ids_for_year&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;id[a], to &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ids_for_year&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;id[b])
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;})
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then I proceed to generate the &lt;strong&gt;nodes&lt;/strong&gt; data frame assigning, like in the edges data frame, a numeric id. Next we select the entries on the CV (titles) and the sections they belong to, which I clean up with the &lt;a href=&#34;https://stringr.tidyverse.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;stringr&lt;/a&gt; package:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; nodes &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mutate&lt;/span&gt;(id &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;row_number&lt;/span&gt;())
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; nodes &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select&lt;/span&gt;(id, title, section)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Make the sections look nices&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; nodes &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mutate&lt;/span&gt;(section &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; stringr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;str_to_title&lt;/span&gt;(stringr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;str_replace_all&lt;/span&gt;(section, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;_&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;)))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;the-plot&#34;&gt;The plot&lt;/h3&gt;
+&lt;p&gt;Now that I have generated the edges and nodes  data frames, I can proceed with the first basic network. I do so with the &lt;a href=&#34;https://datastorm-open.github.io/visNetwork/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;visNetwork&lt;/a&gt; package and &lt;a href=&#34;https://igraph.org/r/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;igraph&lt;/a&gt; nicely algorithm:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNetwork&lt;/span&gt;(nodes, edges)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visIgraphLayout&lt;/span&gt;(layout &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;layout_nicely&amp;#34;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visOptions&lt;/span&gt;(highlightNearest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(hover &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; T))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-cv-network-basic&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;CV network: basic&#34; srcset=&#34;
+               /project/cvnetwork/plot1_hu83b535d35ef84dd0becc669687ff9e02_41644_f1b58de3d9b465238a169bdd53a42f26.webp 400w,
+               /project/cvnetwork/plot1_hu83b535d35ef84dd0becc669687ff9e02_41644_254d5ba82890d382f05889e1af6243ca.webp 760w,
+               /project/cvnetwork/plot1_hu83b535d35ef84dd0becc669687ff9e02_41644_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;https://AFraderaSola.github.io/project/cvnetwork/plot1_hu83b535d35ef84dd0becc669687ff9e02_41644_f1b58de3d9b465238a169bdd53a42f26.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;524&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      CV network: basic
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Interactive version &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot1.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;This first network is &lt;strong&gt;not very intuitive&lt;/strong&gt; as the nodes cannot be distinguished. Thus, I start the &lt;strong&gt;customization&lt;/strong&gt; by adding some &lt;strong&gt;labels&lt;/strong&gt;. These are generated with the section column followed by the first 20 characters of the title column:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;label &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;paste0&lt;/span&gt;(nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;section, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;:\n&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;ifelse&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;nchar&lt;/span&gt;(nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;title) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;paste0&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;substr&lt;/span&gt;(nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;title,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;...&amp;#34;&lt;/span&gt;), nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;title))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNetwork&lt;/span&gt;(nodes, edges)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visIgraphLayout&lt;/span&gt;(layout &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;layout_nicely&amp;#34;&lt;/span&gt;,randomSeed &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;666&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visOptions&lt;/span&gt;(highlightNearest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(hover &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; T))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-cv-network-node-labels&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;CV network: node labels&#34; srcset=&#34;
+               /project/cvnetwork/plot2_hu7af600ddea68f571d157c7dcb124e401_61838_ca28f9b0442a11a1b74a9097ad6f4e71.webp 400w,
+               /project/cvnetwork/plot2_hu7af600ddea68f571d157c7dcb124e401_61838_7dd17482a6764981f6265203f0bb121a.webp 760w,
+               /project/cvnetwork/plot2_hu7af600ddea68f571d157c7dcb124e401_61838_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;https://AFraderaSola.github.io/project/cvnetwork/plot2_hu7af600ddea68f571d157c7dcb124e401_61838_ca28f9b0442a11a1b74a9097ad6f4e71.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;524&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      CV network: node labels
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Interactive version &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot2.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Even with labels the network is still not very intuitive. What if I add some &lt;strong&gt;colour&lt;/strong&gt;? For instance, I can colour each node by the section it belongs to. For this network I selected the Paired color palette from &lt;a href=&#34;https://r-graph-gallery.com/38-rcolorbrewers-palettes.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;RColorBrewer&lt;/a&gt;. This allows me to &lt;strong&gt;pair&lt;/strong&gt; by colour &lt;strong&gt;similar sections&lt;/strong&gt; (education and online education cours, proteomics and genomics publications, and so on) and better visualize the nodes:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Node border color&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;color.border &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;black&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Node background color&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sections &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;unique&lt;/span&gt;(nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;section)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;colors &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; RColorBreIr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;breIr.pal&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;(sections), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Paired&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;color.background &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;section
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;for &lt;/span&gt;(i in &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;(sections)) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  nodes[nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;section &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; sections[i],]&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;color.background &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; colors[i]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNetwork&lt;/span&gt;(nodes, edges)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visIgraphLayout&lt;/span&gt;(layout &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;layout_nicely&amp;#34;&lt;/span&gt;,randomSeed &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;666&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visOptions&lt;/span&gt;(highlightNearest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(hover &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; T))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-cv-network-nodes-coloured&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;CV network: nodes coloured&#34; srcset=&#34;
+               /project/cvnetwork/plot3_hu41c2f2a31776383ceb116f7e95f8f2ef_61831_52e781816ab8bf42ff5e86a2a673bb3b.webp 400w,
+               /project/cvnetwork/plot3_hu41c2f2a31776383ceb116f7e95f8f2ef_61831_34da61a462cb0108f5edd276c532918b.webp 760w,
+               /project/cvnetwork/plot3_hu41c2f2a31776383ceb116f7e95f8f2ef_61831_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;https://AFraderaSola.github.io/project/cvnetwork/plot3_hu41c2f2a31776383ceb116f7e95f8f2ef_61831_52e781816ab8bf42ff5e86a2a673bb3b.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;524&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      CV network: nodes coloured
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Interactive version &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot3.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;Now that our nodes look &lt;strong&gt;beautiful&lt;/strong&gt; I can focus on the edges. I like to colour them in shades in grey, so they get darker as they get closer to the current year:&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;years &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sort&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;unique&lt;/span&gt;(edges&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;year))
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;colors &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; RColorBreIr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;breIr.pal&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;(years), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Greys&amp;#34;&lt;/span&gt;)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;color &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.character&lt;/span&gt;(edges&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;year)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;for &lt;/span&gt;(i in &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;(years)) {
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  edges[edges&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;year &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; years[i],]&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;color &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; colors[i]
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNetwork&lt;/span&gt;(nodes, edges)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visIgraphLayout&lt;/span&gt;(layout &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;layout_nicely&amp;#34;&lt;/span&gt;,randomSeed &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;666&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visOptions&lt;/span&gt;(highlightNearest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(hover &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; T))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+&lt;figure  id=&#34;figure-cv-network-edges-coloured&#34;&gt;
+  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
+    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;CV network: edges coloured&#34; srcset=&#34;
+               /project/cvnetwork/plot4_huec620ddf8542cf3e0923c63aea8c635e_58241_e70c5c2da9979e1216f2317b7e1cb528.webp 400w,
+               /project/cvnetwork/plot4_huec620ddf8542cf3e0923c63aea8c635e_58241_f2eb3d71fa7b0573560843b66912de06.webp 760w,
+               /project/cvnetwork/plot4_huec620ddf8542cf3e0923c63aea8c635e_58241_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
+               src=&#34;https://AFraderaSola.github.io/project/cvnetwork/plot4_huec620ddf8542cf3e0923c63aea8c635e_58241_e70c5c2da9979e1216f2317b7e1cb528.webp&#34;
+               width=&#34;760&#34;
+               height=&#34;524&#34;
+               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
+  &lt;/div&gt;&lt;figcaption&gt;
+      CV network: edges coloured
+    &lt;/figcaption&gt;&lt;/figure&gt;
+&lt;p&gt;Interactive version &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot4.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;For the static version of the network that would be it. I have now an intuitive  network that shows in a nice flow on my career path. Hooray!&lt;/p&gt;
+&lt;p&gt;There are a couple more twitches I like to perform for the interactive version:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Change the colour of selected node&lt;/li&gt;
+&lt;li&gt;Remove the labels, as you can hoover over the node to check its name&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Remove labels&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; nodes &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;label)
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Highlight selected node in black&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNetwork&lt;/span&gt;(nodes, edges)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visIgraphLayout&lt;/span&gt;(layout &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;layout_nicely&amp;#34;&lt;/span&gt;,randomSeed &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;666&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNodes&lt;/span&gt;(color &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(highlight &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;black&amp;#34;&lt;/span&gt;))&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visOptions&lt;/span&gt;(highlightNearest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(hover &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; T))
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This gives our final interactive CV network which, again, can be explored &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot5.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;I hope you  liked this plot and tutorial!&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Network-based assignment of RNA-binding protein function</title>
@@ -382,290 +666,6 @@ With our NA values imputed, we are ready to proceed with a series of quality con
     &lt;/figcaption&gt;&lt;/figure&gt;
 &lt;h3 id=&#34;conclusion&#34;&gt;Conclusion&lt;/h3&gt;
 &lt;p&gt;The purpose of all the data analysis and network building in this project is to create a &lt;strong&gt;valuable resource&lt;/strong&gt;. We identified which &lt;strong&gt;nodes are novel&lt;/strong&gt;, meaning they have not been reported in the BioGRID database, and whether they are classified as RBPs or not. Additionally, we identified potential functional associations with our &lt;strong&gt;function-based&lt;/strong&gt; networks. Following the &lt;strong&gt;guilt-by-association&lt;/strong&gt; principle, if a node is associated with other nodes and hubs that participate in splicing pathways, for example, it is likely involved in splicing. This can serve as a starting point for &lt;strong&gt;in-depth functional characterization&lt;/strong&gt;. To facilitate this, I developed a user-friendly &lt;strong&gt;shiny app&lt;/strong&gt;, available at &lt;a href=&#34;https://butterlab.imb-mainz.de/RINE/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;https://butterlab.imb-mainz.de/RINE/&lt;/a&gt;, where all the networks can be explored. I hope this app makes the data &lt;strong&gt;accessible&lt;/strong&gt; and enables &lt;strong&gt;RNA research labs&lt;/strong&gt; to deepen their understanding of the RBP research field.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>Interactive CV network</title>
-      <link>https://AFraderaSola.github.io/project/cvnetwork/</link>
-      <pubDate>Sat, 23 Jul 2022 00:00:00 +0000</pubDate>
-      <guid>https://AFraderaSola.github.io/project/cvnetwork/</guid>
-      <description>&lt;details class=&#34;toc-inpage d-print-none  &#34; open&gt;
-  &lt;summary class=&#34;font-weight-bold&#34;&gt;Table of Contents&lt;/summary&gt;
-  &lt;nav id=&#34;TableOfContents&#34;&gt;
-  &lt;ul&gt;
-    &lt;li&gt;
-      &lt;ul&gt;
-        &lt;li&gt;&lt;a href=&#34;#tldr&#34;&gt;TL;DR&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#introduction&#34;&gt;Introduction&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#the-data&#34;&gt;The data&lt;/a&gt;&lt;/li&gt;
-        &lt;li&gt;&lt;a href=&#34;#the-plot&#34;&gt;The plot&lt;/a&gt;&lt;/li&gt;
-      &lt;/ul&gt;
-    &lt;/li&gt;
-  &lt;/ul&gt;
-&lt;/nav&gt;
-&lt;/details&gt;
-
-&lt;h3 id=&#34;tldr&#34;&gt;TL;DR&lt;/h3&gt;
-&lt;p&gt;The main idea behind this project is to make your &lt;strong&gt;CV shine&lt;/strong&gt;,  by visualizing its data and plotting it in an interactive fashion you. Thus what I want to do is to connect the usual entries on a CV (education, positions, publications&amp;hellip;) by year, so I can visualize, in an intuitive way, how a career path has developed.&lt;/p&gt;
-&lt;p&gt;Thus our goal is to create an &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot5.html&#34; target=&#34;_blank&#34;&gt;interactive network&lt;/a&gt; of the CV. If you would like to know how to generate something similar, continue to read.&lt;/p&gt;
-&lt;h3 id=&#34;introduction&#34;&gt;Introduction&lt;/h3&gt;
-&lt;p&gt;The inspiration for this network-plot is the fantastic package and tutorial &lt;a href=&#34;http://nickstrayer.me/datadrivencv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;datadrivencv&lt;/a&gt;, by &lt;a href=&#34;https://nickstrayer.me/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;Nick Strayer&lt;/a&gt;, which has the goal of &lt;strong&gt;automatizing the CV update&lt;/strong&gt;. To do so, you would keep each entry on the CV on a .csv file that you would later render into a a .pdf or .html file. In such file, rows correspond to each &lt;em&gt;entry&lt;/em&gt; on your CV, for instance your &lt;em&gt;education degrees&lt;/em&gt; or &lt;em&gt;job experiences&lt;/em&gt;, and columns describe the positions, for instance start year or location.&lt;/p&gt;
-&lt;h3 id=&#34;the-data&#34;&gt;The data&lt;/h3&gt;
-&lt;p&gt;The network-plot starting point is, this way, a CV entries data file. You can check out an example of a CV entries file at Nick&amp;rsquo;s Strayer tutorial &lt;a href=&#34;https://docs.google.com/spreadsheets/d/14MQICF2F8-vf8CKPF1m4lyGKO6_thG-4aSwat1e2TWc/edit#gid=917338460&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;spreadsheet&lt;/a&gt;. You can also download the necessary data to replicate this tutorial &lt;a href=&#34;https://github.com/AFraderaSola/CV/blob/master/network_post_data/network_entries.csv&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;For the network plot I just need each entry on the CV and its corresponding year, so I start by filtering our data with &lt;a href=&#34;https://dplyr.tidyverse.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;dplyr&lt;/a&gt;:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Load entries data file:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;read.csv&lt;/span&gt;(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;network_entries.csv&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Filter relevant columns:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_df &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select&lt;/span&gt;(title, start, end)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;I want to make sure that all entries in start and end are &lt;strong&gt;numeric&lt;/strong&gt;, as they should  be years:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;start &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.numeric&lt;/span&gt;(my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;start)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;end &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.numeric&lt;/span&gt;(my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;end)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;All non numeric entries (like empty values or years set to &amp;ldquo;current&amp;rdquo;) will be transformed into &lt;strong&gt;NA values&lt;/strong&gt;. I will use this in our favour to further filter the data.&lt;/p&gt;
-&lt;p&gt;First I want to kick out all the rows containing NA both in start and end, as those are &lt;strong&gt;time independent&lt;/strong&gt; entries (like skills) &lt;strong&gt;not relevant&lt;/strong&gt; to network-plot:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Flag NA values with the logic statement TRUE and combine columns start and year:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;filter &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;interaction&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;is.na&lt;/span&gt;(my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;start),&lt;span style=&#34;color:#a6e22e&#34;&gt;is.na&lt;/span&gt;(my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;end))
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Filter out all entries that are &amp;#34;TRUE.TRUE&amp;#34; (NA values in both columns) and remove the filter columns:&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df[&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;my_relevant_df&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;filter &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;TRUE.TRUE&amp;#34;&lt;/span&gt;,]
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select&lt;/span&gt;(title, start, end)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Our last step on data cleaning is assign year values to the remaining NA:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;NA values at the &lt;strong&gt;start column&lt;/strong&gt; are assigned to be the same value that end year (i. e., a publication)&lt;/li&gt;
-&lt;li&gt;NA values at the &lt;strong&gt;end column&lt;/strong&gt; are assigned to current year (i. e., current job)&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mutate&lt;/span&gt;(start &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ifelse&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;is.na&lt;/span&gt;(start), end, start))
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;current_year &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; lubridate&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;year&lt;/span&gt;(lubridate&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;ymd&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;Sys.Date&lt;/span&gt;()))
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mutate&lt;/span&gt;(end &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ifelse&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;is.na&lt;/span&gt;(end), current_year, end))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Now that the data is cleaned up, I will generate the two data frames I need for the network plot:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Nodes data,  containing each entry on the CV&lt;/li&gt;
-&lt;li&gt;Edges data, containing the (year) connections among the CV entries&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;I start by generating the &lt;strong&gt;edges&lt;/strong&gt;. First step is to assign a numeric id to each entry and selecting the year columns:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; edges &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mutate&lt;/span&gt;(id &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;row_number&lt;/span&gt;())
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; edges &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select&lt;/span&gt;(id, start, end)
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then I generate the edges with a function borrowed from the &lt;a href=&#34;http://nickstrayer.me/datadrivencv/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;datadrivencv&lt;/a&gt; package:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Combine the start and end years into a integer range&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; edges &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; purrr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;pmap_dfr&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;function&lt;/span&gt;(id, 
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                         start, end) {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;tibble&lt;/span&gt;(year &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; start&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;end, id &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; id)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}) 
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Nest all entries per year range&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt;  edges &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;group_by&lt;/span&gt;(year) &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; tidyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;nest&lt;/span&gt;() &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;rename&lt;/span&gt;(ids_for_year &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; data)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Generate the edges&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;combination_indices &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;function&lt;/span&gt;(n) {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  rep_counts &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; (n&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;tibble&lt;/span&gt;(a &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rep&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;n, times &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; rep_counts), b &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; purrr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;flatten_int&lt;/span&gt;(purrr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;map&lt;/span&gt;(rep_counts, 
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                                                    &lt;span style=&#34;color:#f92672&#34;&gt;~&lt;/span&gt;{
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                                                      &lt;span style=&#34;color:#a6e22e&#34;&gt;tail&lt;/span&gt;(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;n, .x)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                                                    })))
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; edges &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; purrr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;pmap_dfr&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;function&lt;/span&gt;(year, ids_for_year) {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  &lt;span style=&#34;color:#a6e22e&#34;&gt;combination_indices&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;nrow&lt;/span&gt;(ids_for_year)) &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;transmute&lt;/span&gt;(year &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; year, 
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;                                                               from &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ids_for_year&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;id[a], to &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; ids_for_year&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;id[b])
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;})
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;Then I proceed to generate the &lt;strong&gt;nodes&lt;/strong&gt; data frame assigning, like in the edges data frame, a numeric id. Next we select the entries on the CV (titles) and the sections they belong to, which I clean up with the &lt;a href=&#34;https://stringr.tidyverse.org/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;stringr&lt;/a&gt; package:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; my_relevant_df
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; nodes &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mutate&lt;/span&gt;(id &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;row_number&lt;/span&gt;())
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; nodes &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select&lt;/span&gt;(id, title, section)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;# Make the sections look nices&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; nodes &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;mutate&lt;/span&gt;(section &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; stringr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;str_to_title&lt;/span&gt;(stringr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;str_replace_all&lt;/span&gt;(section, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;_&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; &amp;#34;&lt;/span&gt;)))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;h3 id=&#34;the-plot&#34;&gt;The plot&lt;/h3&gt;
-&lt;p&gt;Now that I have generated the edges and nodes  data frames, I can proceed with the first basic network. I do so with the &lt;a href=&#34;https://datastorm-open.github.io/visNetwork/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;visNetwork&lt;/a&gt; package and &lt;a href=&#34;https://igraph.org/r/&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;igraph&lt;/a&gt; nicely algorithm:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNetwork&lt;/span&gt;(nodes, edges)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visIgraphLayout&lt;/span&gt;(layout &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;layout_nicely&amp;#34;&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visOptions&lt;/span&gt;(highlightNearest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(hover &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; T))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  id=&#34;figure-cv-network-basic&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;CV network: basic&#34; srcset=&#34;
-               /project/cvnetwork/plot1_hu83b535d35ef84dd0becc669687ff9e02_41644_f1b58de3d9b465238a169bdd53a42f26.webp 400w,
-               /project/cvnetwork/plot1_hu83b535d35ef84dd0becc669687ff9e02_41644_254d5ba82890d382f05889e1af6243ca.webp 760w,
-               /project/cvnetwork/plot1_hu83b535d35ef84dd0becc669687ff9e02_41644_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/cvnetwork/plot1_hu83b535d35ef84dd0becc669687ff9e02_41644_f1b58de3d9b465238a169bdd53a42f26.webp&#34;
-               width=&#34;760&#34;
-               height=&#34;524&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;figcaption&gt;
-      CV network: basic
-    &lt;/figcaption&gt;&lt;/figure&gt;
-&lt;p&gt;Interactive version &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot1.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;This first network is &lt;strong&gt;not very intuitive&lt;/strong&gt; as the nodes cannot be distinguished. Thus, I start the &lt;strong&gt;customization&lt;/strong&gt; by adding some &lt;strong&gt;labels&lt;/strong&gt;. These are generated with the section column followed by the first 20 characters of the title column:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;label &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;paste0&lt;/span&gt;(nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;section, &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;:\n&amp;#34;&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;ifelse&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;nchar&lt;/span&gt;(nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;title) &lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;, &lt;span style=&#34;color:#a6e22e&#34;&gt;paste0&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;substr&lt;/span&gt;(nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;title,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;20&lt;/span&gt;), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;...&amp;#34;&lt;/span&gt;), nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;title))
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNetwork&lt;/span&gt;(nodes, edges)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visIgraphLayout&lt;/span&gt;(layout &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;layout_nicely&amp;#34;&lt;/span&gt;,randomSeed &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;666&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visOptions&lt;/span&gt;(highlightNearest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(hover &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; T))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  id=&#34;figure-cv-network-node-labels&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;CV network: node labels&#34; srcset=&#34;
-               /project/cvnetwork/plot2_hu7af600ddea68f571d157c7dcb124e401_61838_ca28f9b0442a11a1b74a9097ad6f4e71.webp 400w,
-               /project/cvnetwork/plot2_hu7af600ddea68f571d157c7dcb124e401_61838_7dd17482a6764981f6265203f0bb121a.webp 760w,
-               /project/cvnetwork/plot2_hu7af600ddea68f571d157c7dcb124e401_61838_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/cvnetwork/plot2_hu7af600ddea68f571d157c7dcb124e401_61838_ca28f9b0442a11a1b74a9097ad6f4e71.webp&#34;
-               width=&#34;760&#34;
-               height=&#34;524&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;figcaption&gt;
-      CV network: node labels
-    &lt;/figcaption&gt;&lt;/figure&gt;
-&lt;p&gt;Interactive version &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot2.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Even with labels the network is still not very intuitive. What if I add some &lt;strong&gt;colour&lt;/strong&gt;? For instance, I can colour each node by the section it belongs to. For this network I selected the Paired color palette from &lt;a href=&#34;https://r-graph-gallery.com/38-rcolorbrewers-palettes.html&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;RColorBrewer&lt;/a&gt;. This allows me to &lt;strong&gt;pair&lt;/strong&gt; by colour &lt;strong&gt;similar sections&lt;/strong&gt; (education and online education cours, proteomics and genomics publications, and so on) and better visualize the nodes:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Node border color&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;color.border &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;black&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Node background color&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;sections &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;unique&lt;/span&gt;(nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;section)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;colors &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; RColorBreIr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;breIr.pal&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;(sections), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Paired&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;color.background &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;section
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;for &lt;/span&gt;(i in &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;(sections)) {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  nodes[nodes&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;section &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; sections[i],]&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;color.background &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; colors[i]
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNetwork&lt;/span&gt;(nodes, edges)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visIgraphLayout&lt;/span&gt;(layout &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;layout_nicely&amp;#34;&lt;/span&gt;,randomSeed &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;666&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visOptions&lt;/span&gt;(highlightNearest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(hover &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; T))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  id=&#34;figure-cv-network-nodes-coloured&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;CV network: nodes coloured&#34; srcset=&#34;
-               /project/cvnetwork/plot3_hu41c2f2a31776383ceb116f7e95f8f2ef_61831_52e781816ab8bf42ff5e86a2a673bb3b.webp 400w,
-               /project/cvnetwork/plot3_hu41c2f2a31776383ceb116f7e95f8f2ef_61831_34da61a462cb0108f5edd276c532918b.webp 760w,
-               /project/cvnetwork/plot3_hu41c2f2a31776383ceb116f7e95f8f2ef_61831_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/cvnetwork/plot3_hu41c2f2a31776383ceb116f7e95f8f2ef_61831_52e781816ab8bf42ff5e86a2a673bb3b.webp&#34;
-               width=&#34;760&#34;
-               height=&#34;524&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;figcaption&gt;
-      CV network: nodes coloured
-    &lt;/figcaption&gt;&lt;/figure&gt;
-&lt;p&gt;Interactive version &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot3.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;Now that our nodes look &lt;strong&gt;beautiful&lt;/strong&gt; I can focus on the edges. I like to colour them in shades in grey, so they get darker as they get closer to the current year:&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;years &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;sort&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;unique&lt;/span&gt;(edges&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;year))
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;colors &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; RColorBreIr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;breIr.pal&lt;/span&gt;(n &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;(years), &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;Greys&amp;#34;&lt;/span&gt;)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;edges&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;color &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;as.character&lt;/span&gt;(edges&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;year)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;for &lt;/span&gt;(i in &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;length&lt;/span&gt;(years)) {
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  edges[edges&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;year &lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt; years[i],]&lt;span style=&#34;color:#f92672&#34;&gt;$&lt;/span&gt;color &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; colors[i]
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;}
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNetwork&lt;/span&gt;(nodes, edges)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visIgraphLayout&lt;/span&gt;(layout &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;layout_nicely&amp;#34;&lt;/span&gt;,randomSeed &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;666&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visOptions&lt;/span&gt;(highlightNearest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(hover &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; T))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-&lt;figure  id=&#34;figure-cv-network-edges-coloured&#34;&gt;
-  &lt;div class=&#34;d-flex justify-content-center&#34;&gt;
-    &lt;div class=&#34;w-100&#34; &gt;&lt;img alt=&#34;CV network: edges coloured&#34; srcset=&#34;
-               /project/cvnetwork/plot4_huec620ddf8542cf3e0923c63aea8c635e_58241_e70c5c2da9979e1216f2317b7e1cb528.webp 400w,
-               /project/cvnetwork/plot4_huec620ddf8542cf3e0923c63aea8c635e_58241_f2eb3d71fa7b0573560843b66912de06.webp 760w,
-               /project/cvnetwork/plot4_huec620ddf8542cf3e0923c63aea8c635e_58241_1200x1200_fit_q75_h2_lanczos.webp 1200w&#34;
-               src=&#34;https://AFraderaSola.github.io/project/cvnetwork/plot4_huec620ddf8542cf3e0923c63aea8c635e_58241_e70c5c2da9979e1216f2317b7e1cb528.webp&#34;
-               width=&#34;760&#34;
-               height=&#34;524&#34;
-               loading=&#34;lazy&#34; data-zoomable /&gt;&lt;/div&gt;
-  &lt;/div&gt;&lt;figcaption&gt;
-      CV network: edges coloured
-    &lt;/figcaption&gt;&lt;/figure&gt;
-&lt;p&gt;Interactive version &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot4.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;&lt;/p&gt;
-&lt;p&gt;For the static version of the network that would be it. I have now an intuitive  network that shows in a nice flow on my career path. Hooray!&lt;/p&gt;
-&lt;p&gt;There are a couple more twitches I like to perform for the interactive version:&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;Change the colour of selected node&lt;/li&gt;
-&lt;li&gt;Remove the labels, as you can hoover over the node to check its name&lt;/li&gt;
-&lt;/ul&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre tabindex=&#34;0&#34; style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;&#34;&gt;&lt;code class=&#34;language-r&#34; data-lang=&#34;r&#34;&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Remove labels&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;nodes &lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;-&lt;/span&gt; nodes &lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt; dplyr&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;select&lt;/span&gt;(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;label)
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#Highlight selected node in black&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNetwork&lt;/span&gt;(nodes, edges)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visIgraphLayout&lt;/span&gt;(layout &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;layout_nicely&amp;#34;&lt;/span&gt;,randomSeed &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;666&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visNodes&lt;/span&gt;(color &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(highlight &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;black&amp;#34;&lt;/span&gt;))&lt;span style=&#34;color:#f92672&#34;&gt;%&amp;gt;%&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span style=&#34;display:flex;&#34;&gt;&lt;span&gt;  visNetwork&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;visOptions&lt;/span&gt;(highlightNearest &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;list&lt;/span&gt;(hover &lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt; T))
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;This gives our final interactive CV network which, again, can be explored &lt;a href=&#34;https://AFraderaSola.github.io/uploads/project/CVnetwork/plot5.html&#34; target=&#34;_blank&#34;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I hope you  liked this plot and tutorial!&lt;/p&gt;
 </description>
     </item>
     
